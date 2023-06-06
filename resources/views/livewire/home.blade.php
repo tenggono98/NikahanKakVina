@@ -28,12 +28,12 @@
     </section>
 
     <section id="info" class="" >
-        <div class="flex h-screen justify-center items-center flex-col">
-            <div class="w-full h-screen pt-10 pb-10 px-3 md:pt-0 md:px-0 md:pb-0  bg-cover bg-center" style="background-image: url('{{asset('img/BACKGROUND.jpg')}}')">
-
+        <div class="flex  justify-center items-center flex-col">
+            <div class="w-full h-[100%]  pt-10 pb-10 px-3 md:pt-0  md:px-0 md:pb-0  bg-fixed bg-center" style="background-image: url('{{asset('img/BACKGROUND.jpg')}}')">
+                <img src="{{asset('img/Asset 2.svg')}}" class=" bg-contain  w-[98%]  " alt="">
                 <div class="w-full h-full flex flex-col  justify-start items-center">
 
-                        <img src="{{asset('img/Asset 2.svg')}}" class=" w-[98%]  " alt="">
+
 
                         <div class="grid grid-cols-4 md:grid-cols-3  h-full w-full  md:pt-12 md:px-20 gap-3">
                             <div class="order-2 md:order-none col-span-2 md:col-span-1">
@@ -55,11 +55,12 @@
 
                         </div>
 
-                        <img src="{{asset('img/Asset 3.svg')}}" class="w-[98%]  " alt="">
+
 
 
 
                 </div>
+                <img src="{{asset('img/Asset 3.svg')}}" class=" bg-contain w-[98%]  " alt="">
 
             </div>
         </div>
