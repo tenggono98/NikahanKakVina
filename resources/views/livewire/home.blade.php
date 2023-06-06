@@ -33,29 +33,29 @@
 
                 <div class="w-full h-full flex flex-col  justify-start items-center">
 
-                        <img src="{{asset('img/Asset 2.svg')}}" class="bg-contain w-[98%]" alt="">
+                        <img src="{{asset('img/Asset 2.svg')}}" class=" w-[98%]  " alt="">
 
                         <div class="grid grid-cols-4 md:grid-cols-3  h-full w-full  md:pt-12 md:px-20 gap-3">
                             <div class="order-2 md:order-none col-span-2 md:col-span-1">
-                                <img src="{{ asset('img/laki-laki.png')}}" class="mx-auto w-auto h-52 md:w-auto md:h-auto" alt="">
+                                <img src="{{ asset('img/laki-laki.png')}}" class="mx-auto w-auto h-52 md:w-auto md:h-2/3" alt="">
                                 <p class="uppercase text-[#582841] text-sm md:text-3xl text-center" style="font-family: geovano;">Arie Lasmana</p>
                                 <p class="text-[#582841] text-center text-xs md:text-xl " style="font-family: spinnaker;">Son of ( &#128327;  ) Mr. Alimin Effendy <br>&<br> Mrs. Lis Harjanti</p>
                             </div>
                             <div class="mt-10 md:mt-32 order-1 col-span-4 md:col-span-1 md:order-none">
                                 <p class="text-[#582841] text-center text-md md:text-3xl " style="font-family: spinnaker;">The honor of your presence is requested.<br>
                                     At the marriage of</p>
-                                    <img src="{{asset('img/Asset 5.svg')}}" class="h-[20vh] md:h-[50vh] w-auto md:-mt-32 " alt="">
+                                    <img src="{{asset('img/Asset 5.svg')}}" class="h-[20vh] md:h-[50vh] w-auto md:-mt-32 mx-auto " alt="">
 
                             </div>
                             <div class="order-3 md:order-none col-span-2 md:col-span-1">
-                                <img src="{{ asset('img/perempuan.png')}}" class="mx-auto w-auto h-52 md:w-auto md:h-auto" alt="">
+                                <img src="{{ asset('img/perempuan.png')}}" class="mx-auto w-auto h-52 md:w-auto md:h-2/3" alt="">
                                 <p class="uppercase text-[#582841] text-sm md:text-3xl text-center" style="font-family: geovano;">PRICILLA DEVINA SUKAMTO</p>
                                 <p class="text-[#582841] text-center text-xs md:text-xl " style="font-family: spinnaker;">Daughter of Mr.Thomas Sukamto <br> & <br> Mrs.Debora Megawaty</p>
                             </div>
 
                         </div>
 
-                        <img src="{{asset('img/Asset 3.svg')}}" class="bg-contain w-[98%] " alt="">
+                        <img src="{{asset('img/Asset 3.svg')}}" class="w-[98%]  " alt="">
 
 
 
