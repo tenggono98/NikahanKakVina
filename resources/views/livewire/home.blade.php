@@ -74,7 +74,7 @@
 
                 <div class=" col-span-5">
                     {{-- Title --}}
-                        <p class="text-7xl font-bold text-white text-center ">SAVE THE DATE</p>
+                        <p class="text-7xl font-bold text-white text-center " style="font-family: geovano;">SAVE THE DATE</p>
                         <img src="{{asset('img/Asset 1.svg')}}" class="h-[5vh] md:h-[20vh] mx-auto  -mt-7 " alt="">
                     {{-- Title --}}
 
@@ -84,36 +84,36 @@
                     <div class="flex mt-28 justify-center ">
                         <div class="">
                             <div class="bg-white px-8 py-6 my-auto">
-                                <p class="text-3xl" id="clock_days"></p>
+                                <p class="text-3xl text-[#572841]" id="clock_days" style="font-family: geovano;"></p>
                             </div>
-                            <p class="text-center text-white mt-4">DAY</p>
+                            <p class="text-center text-white mt-4" style="font-family: spinnaker;">DAY</p>
                         </div>
                         <div class="self-center px-8 pb-12 h-full">
                             <p class="text-white text-5xl">:</p>
                         </div>
                         <div class="">
                             <div class="bg-white px-8 py-6 my-auto">
-                                <p class="text-3xl" id="clock_hours"></p>
+                                <p class="text-3xl text-[#572841]" id="clock_hours" style="font-family: geovano;"></p>
                             </div>
-                            <p class="text-center text-white mt-4">HOUR</p>
+                            <p class="text-center text-white mt-4" style="font-family: spinnaker;">HOUR</p>
                         </div>
                         <div class="self-center px-8 pb-12 h-full">
                             <p class="text-white text-5xl">:</p>
                         </div>
                         <div class="">
                             <div class="bg-white px-8 py-6 my-auto">
-                                <p class="text-3xl" id="clock_minutes"></p>
+                                <p class="text-3xl text-[#572841]" id="clock_minutes" style="font-family: geovano;"></p>
                             </div>
-                            <p class="text-center text-white mt-4">MINUTE</p>
+                            <p class="text-center text-white mt-4" style="font-family: spinnaker;">MINUTE</p>
                         </div>
                         <div class="self-center px-8 pb-12 h-full">
                             <p class="text-white text-5xl">:</p>
                         </div>
                         <div class="">
                             <div class="bg-white px-8 py-6 my-auto">
-                                <p class="text-3xl" id="clock_second"></p>
+                                <p class="text-3xl text-[#572841]" id="clock_second" style="font-family: geovano;"></p>
                             </div>
-                            <p class="text-center text-white mt-4">SECOND</p>
+                            <p class="text-center text-white mt-4" style="font-family: spinnaker;">SECOND</p>
                         </div>
 
 
@@ -189,15 +189,18 @@
 
                 </div>
 
-                <div class="col-span-3">
+                <div class="col-span-3 relative mt-20">
 
-                    <div class="">
-                        <img src="" alt="">
+                    <div class="absolute">
+                        <div class="">
+                            <img src="{{ asset('img/top_save_date.png')}}" class="-mb-20" alt="">
+                        </div>
+
+                        <div class="">
+                            <img src="{{ asset('img/bottom_save_date.png')}}" alt="">
+                        </div>
                     </div>
 
-                    <div class="">
-                        <img src="" alt="">
-                    </div>
 
 
                 </div>
@@ -207,20 +210,23 @@
 
                     {{-- Section 1 --}}
                     <div class="">
-                        <p>HOLY MATRIMONY</p>
-                        <div class="flex justify-between">
+                        <p class="text-white text-3xl" style="font-family: geovano;">HOLY MATRIMONY</p>
+                        <div class="flex justify-between" style="font-family: geovano;">
                             <div class="">
-                                <p>SABTU, 29 SEPTEMBER 2023 </p>
+                                <p class="text-white text-xl">SABTU, 29 SEPTEMBER 2023 </p>
 
                             </div>
+                            <div class="">
+                                <p class="text-white ">|</p>
+                            </div>
                             <div class="mr-24">
-                                <p>11.00</p>
+                                <p class="text-white text-xl">11.00</p>
                             </div>
                         </div>
-                        <p>
+                        <p class="text-white my-4" style="font-family:spinnaker">
                             Gereja Katolik Paroki St. Vincentius A Paulo Jl. Ananas No.41, Pisang Candi, Kec. Sukun, <br> Kota Malang, Jawa Timur 65146
                         </p>
-                        <button class="btn bg-white ">
+                        <button class="btn  rounded-none text-[#572841] border-none bg-[#E8895B] font-bold text-xl " style="font-family:spinnaker">
                             Map Location
                         </button>
                     </div>
@@ -232,7 +238,7 @@
                     {{-- Seperator--}}
                     <div class="">
                         <div class="">
-                            <img src="{{asset('img/Asset 2.svg')}}" class="   w-full h-[10em] md:mt-5 invert " alt="">
+                            <img src="{{asset('img/Asset 6.svg')}}" class=" mx-auto  w-[80%] h-[10em] md:mt-5  " alt="">
                         </div>
 
 
@@ -245,20 +251,20 @@
                     {{-- Section 2 --}}
 
                     <div class="">
-                        <p>WEDDING RECEPTION</p>
-                        <div class="flex justify-between">
+                        <p class="text-white text-3xl" style="font-family: geovano;">WEDDING RECEPTION</p>
+                        <div class="flex justify-between"   style="font-family: geovano;">
                             <div class="">
-                                <p>SABTU, 29 SEPTEMBER 2023 </p>
+                                <p class="text-white text-xl">SABTU, 29 SEPTEMBER 2023 </p>
 
                             </div>
                             <div class="mr-24">
-                                <p>18.00</p>
+                                <p class="text-white text-xl">18.00</p>
                             </div>
                         </div>
-                        <p>
+                        <p class="text-white my-4" style="font-family:spinnaker">
                             Gereja Katolik Paroki St. Vincentius A Paulo Jl. Ananas No.41, Pisang Candi, Kec. Sukun, <br> Kota Malang, Jawa Timur 65146
                         </p>
-                        <button class="btn bg-white ">
+                        <button class="btn  rounded-none text-[#572841] border-none bg-[#E8895B] font-bold text-xl " style="font-family:spinnaker">
                             Map Location
                         </button>
                     </div>
@@ -272,5 +278,91 @@
         </div>
 
     </section>
+
+    {{-- Wishes Begin --}}
+    <section id="wishes">
+          <div class="w-full h-[100%]  pt-10 pb-10 px-3 md:pt-0  md:px-0 md:pb-0  bg-fixed bg-center" style="background-image: url('{{asset('img/BACKGROUND.jpg')}}')">
+
+            <div class="w-full h-screen flex flex-col  justify-start items-center">
+            <div class="mt-16 mb-8">
+                <img src="{{asset('img/Asset 5.svg')}}" class="h-[10vh] md:h-[20vh] w-auto mx-auto " alt="">
+                <p class="-mt-16 text-center text-7xl text-[#572841] " style="font-family: geovano;">WISHES</p>
+                <p class="text-center text-2xl text-[#572841]  " style="font-family: spinnaker;">Sending prayers for the Bride & Groom</p>
+            </div>
+
+
+            <div class="flex flex-col gap-5 bg-[#E8895B] py-10 px-16 w-[50vw]">
+
+                <div class="w-full">
+                    <input type="text" class="w-full p-5 bg-[#F3EAE5] text-[#572841] font-bold text-xl placeholder:text-xl placeholder:text-[#572841] placeholder:font-bold placeholder:opacity-50" style="font-family:spinnaker" placeholder="NAME" >
+
+
+                </div>
+                <div class="w-full">
+
+                    <textarea class="w-full p-5 bg-[#F3EAE5] text-[#572841] font-bold text-xl placeholder:text-xl placeholder:text-[#572841] placeholder:font-bold placeholder:opacity-50" style="font-family:spinnaker" name="" id="" cols="20" rows="3" placeholder="MESSAGE"></textarea>
+                </div>
+
+                <div class="mx-auto">
+                    <button class="btn mx-auto  rounded-none text-[#572841] border-none bg-[#F3EAE5] font-bold text-xl  " style="font-family:spinnaker">
+                       <span class="opacity-50">SEND</span>
+                    </button>
+                </div>
+
+                <div class="">
+                    <div class="h-44 flex flex-col gap-2 overflow-y-scroll">
+
+                        <div class="flex flex-col ">
+                            <div class="bg-[#F3EAE5] flex flex-col gap-2 px-5 py-3">
+                                <div class="">
+                                    <p class="text-[#572841]"  style="font-family: spinnaker;">Adela & Chris</p>
+                                </div>
+                                <div class="">
+                                <p class="text-[#572841]"  style="font-family: spinnaker;">HAPPY WEDDING!!!! CIE CIE CIE </p>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="flex flex-col ">
+                            <div class="bg-[#F3EAE5] flex flex-col gap-2 px-5 py-3">
+                                <div class="">
+                                    <p class="text-[#572841]"  style="font-family: spinnaker;">Adela & Chris</p>
+                                </div>
+                                <div class="">
+                                <p class="text-[#572841]"  style="font-family: spinnaker;">HAPPY WEDDING!!!! CIE CIE CIE </p>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="flex flex-col ">
+                            <div class="bg-[#F3EAE5] flex flex-col gap-2 px-5 py-3">
+                                <div class="">
+                                    <p class="text-[#572841]"  style="font-family: spinnaker;">Adela & Chris</p>
+                                </div>
+                                <div class="">
+                                <p class="text-[#572841]"  style="font-family: spinnaker;">HAPPY WEDDING!!!! CIE CIE CIE </p>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+    {{-- Wishes End --}}
 
 </div>
