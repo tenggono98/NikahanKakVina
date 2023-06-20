@@ -68,49 +68,49 @@
 
 
     <section id="info">
-        <div class="w-full h-[100vh]  pt-10 pb-10 px-3 md:pt-0  md:px-0 md:pb-0  bg-[#ab212a]" >
-            <div class="grid grid-cols-12 px-24 py-24">
+        <div class="w-full h-max md:h-[100vh]  pb-10 px-3 md:pt-0  md:px-0 md:pb-0  bg-[#ab212a]" >
+            <div class="grid grid-cols-12 py-12 md:px-24 md:py-24">
 
 
-                <div class=" col-span-5">
+                <div class=" col-span-12 md:col-span-5">
                     {{-- Title --}}
-                        <p class="text-7xl font-bold text-white text-center " style="font-family: geovano;">SAVE THE DATE</p>
-                        <img src="{{asset('img/Asset 1.svg')}}" class="h-[5vh] md:h-[20vh] mx-auto  -mt-7 " alt="">
+                        <p class=" text-5xl md:text-7xl font-bold text-white text-center " style="font-family: geovano;">SAVE THE DATE</p>
+                        <img src="{{asset('img/Asset 1.svg')}}" class="h-[10vh] md:h-[20vh] mx-auto  -mt-7 " alt="">
                     {{-- Title --}}
 
 
                     {{-- Clock --}}
 
-                    <div class="flex mt-28 justify-center ">
+                    <div class="flex mt-12 md:mt-28 justify-center ">
                         <div class="">
-                            <div class="bg-white px-8 py-6 my-auto">
+                            <div class="bg-white py-6 px-5 md:px-8 md:py-6 my-auto">
                                 <p class="text-3xl text-[#572841]" id="clock_days" style="font-family: geovano;"></p>
                             </div>
                             <p class="text-center text-white mt-4" style="font-family: spinnaker;">DAY</p>
                         </div>
-                        <div class="self-center px-8 pb-12 h-full">
-                            <p class="text-white text-5xl">:</p>
+                        <div class="self-center px-3 md:px-8 pb-12 h-full">
+                            <p class="text-white text-2xl md:text-5xl">:</p>
                         </div>
                         <div class="">
-                            <div class="bg-white px-8 py-6 my-auto">
+                            <div class="bg-white py-6 px-5 md:px-8 md:py-6 my-auto">
                                 <p class="text-3xl text-[#572841]" id="clock_hours" style="font-family: geovano;"></p>
                             </div>
                             <p class="text-center text-white mt-4" style="font-family: spinnaker;">HOUR</p>
                         </div>
-                        <div class="self-center px-8 pb-12 h-full">
-                            <p class="text-white text-5xl">:</p>
+                        <div class="self-center px-3 md:px-8 pb-12 h-full">
+                            <p class="text-white text-2xl md:text-5xl">:</p>
                         </div>
                         <div class="">
-                            <div class="bg-white px-8 py-6 my-auto">
+                            <div class="bg-white py-6 px-5 md:px-8 md:py-6 my-auto">
                                 <p class="text-3xl text-[#572841]" id="clock_minutes" style="font-family: geovano;"></p>
                             </div>
                             <p class="text-center text-white mt-4" style="font-family: spinnaker;">MINUTE</p>
                         </div>
-                        <div class="self-center px-8 pb-12 h-full">
-                            <p class="text-white text-5xl">:</p>
+                        <div class="self-center px-3 md:px-8 pb-12 h-full">
+                            <p class="text-white text-2xl md:text-5xl">:</p>
                         </div>
                         <div class="">
-                            <div class="bg-white px-8 py-6 my-auto">
+                            <div class="bg-white py-6 px-5 md:px-8 md:py-6 my-auto">
                                 <p class="text-3xl text-[#572841]" id="clock_second" style="font-family: geovano;"></p>
                             </div>
                             <p class="text-center text-white mt-4" style="font-family: spinnaker;">SECOND</p>
@@ -189,15 +189,15 @@
 
                 </div>
 
-                <div class="col-span-3 relative mt-20">
+                <div class=" col-span-12 md:col-span-3 relative mt-20 ml-12">
 
-                    <div class="absolute">
+                    <div class=" mb-10 md:mb-0 md:absolute">
                         <div class="">
-                            <img src="{{ asset('img/top_save_date.png')}}" class="-mb-20" alt="">
+                            <img src="{{ asset('img/top_save_date.png')}}" class="-mb-20 h-auto w-[100%]" alt="">
                         </div>
 
                         <div class="">
-                            <img src="{{ asset('img/bottom_save_date.png')}}" alt="">
+                            <img src="{{ asset('img/bottom_save_date.png')}}" class="h-auto w-[100%]" alt="">
                         </div>
                     </div>
 
@@ -206,7 +206,7 @@
                 </div>
 
 
-                <div class="col-span-4">
+                <div class=" col-span-12 md:col-span-4">
 
                     {{-- Section 1 --}}
                     <div class="">
@@ -226,7 +226,7 @@
                         <p class="text-white my-4" style="font-family:spinnaker">
                             Gereja Katolik Paroki St. Vincentius A Paulo Jl. Ananas No.41, Pisang Candi, Kec. Sukun, <br> Kota Malang, Jawa Timur 65146
                         </p>
-                        <button class="btn  rounded-none text-[#572841] border-none bg-[#E8895B] font-bold text-xl " style="font-family:spinnaker">
+                        <button class="btn h-max  rounded-none text-[#572841] border-none bg-[#E8895B] font-bold text-xl " style="font-family:spinnaker">
                             Map Location
                         </button>
                     </div>
@@ -264,7 +264,7 @@
                         <p class="text-white my-4" style="font-family:spinnaker">
                             Gereja Katolik Paroki St. Vincentius A Paulo Jl. Ananas No.41, Pisang Candi, Kec. Sukun, <br> Kota Malang, Jawa Timur 65146
                         </p>
-                        <button class="btn  rounded-none text-[#572841] border-none bg-[#E8895B] font-bold text-xl " style="font-family:spinnaker">
+                        <button class="btn h-max  rounded-none text-[#572841] border-none bg-[#E8895B] font-bold text-xl " style="font-family:spinnaker">
                             Map Location
                         </button>
                     </div>
@@ -281,12 +281,12 @@
 
     {{-- Wishes Begin --}}
     <section id="wishes">
-          <div class="w-full h-[100%]  pt-10 pb-10 px-3 md:pt-0  md:px-0 md:pb-0  bg-fixed bg-center" style="background-image: url('{{asset('img/BACKGROUND.jpg')}}')">
+          <div class="w-full h-max  pt-10 pb-10 px-3 md:pt-0  md:px-0 md:pb-0  bg-fixed " style="background-image: url('{{asset('img/BACKGROUND.jpg')}}')">
 
             <div class="w-full h-screen flex flex-col  justify-start items-center">
-            <div class="mt-16 mb-8">
+            <div class="md:mt-16 md:mb-8">
                 <img src="{{asset('img/Asset 5.svg')}}" class="h-[10vh] md:h-[20vh] w-auto mx-auto " alt="">
-                <p class="-mt-16 text-center text-7xl text-[#572841] " style="font-family: geovano;">WISHES</p>
+                <p class="md:-mt-16 text-center text-7xl text-[#572841] " style="font-family: geovano;">WISHES</p>
                 <p class="text-center text-2xl text-[#572841]  " style="font-family: spinnaker;">Sending prayers for the Bride & Groom</p>
             </div>
 
