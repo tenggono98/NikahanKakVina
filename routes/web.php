@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Home;
 use App\Http\Livewire\Admin\Login;
 use App\Http\Livewire\Admin\Tamu;
+use App\Http\Livewire\HomeV2;
 use App\Http\Livewire\LoginComponen;
 use Illuminate\Auth\Events\Logout;
 
@@ -37,6 +38,6 @@ Route::prefix('admin')->group(function () {
 
 
 // Web
-Route::get('/', Home::class)->name('home');
+Route::get('/', HomeV2::class)->name('home');
 
 
