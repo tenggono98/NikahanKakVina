@@ -20,6 +20,15 @@
                  </div>
             </div>
 
+        @if (empty($tamu_array))
+
+            <tr>
+                <td colspan="6"><h5 class="text-center">Data Tamu Masih belum ada</h5> </td>
+
+            </tr>
+
+        @else
+
             <table id="table-tamu" class="datatables-table" wire:ignore.self>
                 <thead>
                     <tr>
@@ -32,8 +41,12 @@
                     </tr>
                 </thead>
                 <tbody>
+
+
+
+                    @foreach ($tamu_array as $key => $row)
                     <tr>
-                        <td><input type="checkbox" checked="checked" wire:model="checklist_tamu" class="checkbox"  /></td>
+                        <td><input type="checkbox" checked="checked" wire:model="checklist_tamu.{{ $key ?? 0 }}" class="checkbox"  /></td>
                         <td>Alfonso & May</td>
                         <td>085609022744</td>
                         <td><div class="badge badge-primary">Iya</div></td>
@@ -49,7 +62,13 @@
                             </div>
                         </td>
                     </tr>
-                    <tr>
+                @endforeach
+
+
+
+
+                    {{-- <tr>
+
                         <td><input type="checkbox" checked="checked" wire:model="checklist_tamu" class="checkbox" /></td>
                         <td>Alfonso & May</td>
                         <td>085609022744</td>
@@ -65,12 +84,14 @@
                                 </div>
                             </div>
                         </td>
-                    </tr>
+                    </tr> --}}
 
 
                 </tbody>
 
             </table>
+
+            @endif
         </div>
 
 

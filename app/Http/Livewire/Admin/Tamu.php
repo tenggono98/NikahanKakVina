@@ -24,9 +24,14 @@ class Tamu extends Component
     {
         $page_title = 'Tamu Undangan';
         $page_name = 'Tamu';
+
+        $tamu_array = MTamu::all()->toArray();
+
+        // dd($tamu_array);
+
         app('debugbar')->info($this->nama_tamu[0] ?? 'kosong');
         app('debugbar')->info($this->nama_tamu[1] ?? 'kosong');
-        return view('livewire.admin.tamu')->layout('components.layout-admin-main',compact('page_title','page_name'));
+        return view('livewire.admin.tamu',compact('page_title','page_name','tamu_array'))->layout('components.layout-admin-main',compact('page_title','page_name'));
     }
 
     public function resetData()
@@ -74,7 +79,7 @@ class Tamu extends Component
 
     public function confirmedDelete()
     {
-        
+
         $this->alert('warning', 'Data Sudah dihapus');
     }
 
