@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('m_tamus', function (Blueprint $table) {
+        //
+        Schema::create('setting_website', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_tamu');
-            $table->string('no_tlp_tamu');
-            $table->string('type_tamu');
-            $table->string('visit_website_status')->default('false');
-            $table->string('link_tamu')->nullable();
-            $table->string('hadir')->default('false');
+            $table->string('name');
+            $table->string('value');
             $table->timestamps();
         });
     }
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tamus');
+        //
     }
 };

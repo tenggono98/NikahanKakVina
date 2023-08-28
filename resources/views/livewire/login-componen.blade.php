@@ -31,7 +31,7 @@
 
 
               <div class="card-actions">
-                <button class="btn btn-primary" wire:click="submit">Login</button>
+                <button class="btn btn-primary" type="submit" wire:click="submit">Login</button>
               </div>
 
               @if ($errors->any())

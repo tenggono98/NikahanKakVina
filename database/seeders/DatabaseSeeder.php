@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
@@ -18,7 +19,15 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory()->create([
             'name' => 'Test User',
             'username' => 'test',
-            'password' => Hash::make('password')
+            'password' => Hash::make('asd123')
+        ]);
+
+
+
+        DB::table('setting_website')->insert([
+            'name' => 'Massage_WA_Template',
+            'value' => ''
+
         ]);
     }
 }

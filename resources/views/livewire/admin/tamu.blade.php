@@ -5,15 +5,12 @@
 
         <div class="">
 
-            <div class="grid grid-cols-4 gap-3 ">
+            <div class="grid grid-cols-3 gap-3 ">
                 <div class="my-5">
                     <a href="#tambah-tamu-modal"> <button class="btn w-full" wire:click="resetVal()" >Tambah</button></a>
                  </div>
                  <div class="my-5">
                     <a href="#tambah-tamu-modal"> <button class="btn w-full" wire:click="resetVal()" >Edit</button></a>
-                 </div>
-                 <div class="my-5">
-                    <a href="#tambah-tamu-modal"> <button class="btn w-full" wire:click="resetVal()" >Copy</button></a>
                  </div>
                  <div class="my-5">
                     <a href="#tambah-tamu-modal"> <button class="btn w-full" wire:click="resetVal()" >Delete</button></a>
@@ -35,6 +32,7 @@
                         <th class="w-2 ">Check</th>
                         <th>Nama</th>
                         <th>No Tlp</th>
+                        <th>Tipe Tamu</th>
                         <th>Hadir?</th>
                         <th>Invitation</th>
                         <th>Action</th>
@@ -46,11 +44,32 @@
 
                     @foreach ($tamu_array as $key => $row)
                     <tr>
-                        <td><input type="checkbox" checked="checked" wire:model="checklist_tamu.{{ $key ?? 0 }}" class="checkbox"  /></td>
-                        <td>Alfonso & May</td>
-                        <td>085609022744</td>
-                        <td><div class="badge badge-primary">Iya</div></td>
-                        <td><button class="btn btn-secondary w-full" wire:click="copy()" onclick="copyLink('{{ 'Coba Copy' }}')">Copy</button></td>
+                        <td><input type="checkbox" checked="checked" name="checklist_tamu.{{ $key ?? 0 }}" wire:model="checklist_tamu.{{ $key ?? 0 }}" class="checkbox"  /></td>
+                        <td>{{ $row['nama_tamu'] }}</td>
+                        <td>{{ $row['no_tlp_tamu'] }}</td>
+                        <td>{{ $row['type_tamu'] }}</td>
+                        <td>
+
+                            @if($row['hadir'] == 'false')
+                            <div class="badge badge-secondary">Belum Respond</div>
+                            @elseif($row['hadir'] == 'Iya')
+                            <div class="badge badge-primary">Iya</div>
+                            @else
+                            <div class="badge badge-secondary">Tidak</div>
+                            @endif
+
+                        </td>
+                        <td>
+
+                            <div class="flex gap-3">
+                                <div class="">
+                                    <button class="btn btn-secondary w-full" wire:click="copy()" onclick="copyLink('https://wa.me/{{  preg_replace('/0/', '+62', $row['no_tlp_tamu'], 1) }}?text={{ $templateWA . ' ' . urlencode(url($row['link_tamu'])) }}  ')">Copy</button>
+                                </div>
+                                <div class="">
+                                    <a class="btn btn-accent w-full" target="_blank" href="https://wa.me/{{ preg_replace('/0/', '+62', $row['no_tlp_tamu'], 1) }}?text={{ $templateWA . ' ' . urlencode(url($row['link_tamu'])) }}" >Send</a>
+                                </div>
+                            </div>
+                        </td>
                         <td>
                             <div class="flex gap-3">
                                 <div class="flex-auto">
@@ -67,24 +86,6 @@
 
 
 
-                    {{-- <tr>
-
-                        <td><input type="checkbox" checked="checked" wire:model="checklist_tamu" class="checkbox" /></td>
-                        <td>Alfonso & May</td>
-                        <td>085609022744</td>
-                        <td><div class="badge badge-secondary">Tidak</div></td>
-                        <td><button class="btn btn-secondary w-full" wire:click="copy()" onclick="copyLink('{{ 'Coba Copy' }}')">Copy</button></td>
-                        <td>
-                            <div class="flex gap-3">
-                                <div class="flex-auto">
-                                    <button class="btn btn-info w-full ">Edit</button>
-                                </div>
-                                <div class="flex-auto">
-                                    <button class="btn btn-error w-full " wire:click="del()" >Del</button>
-                                </div>
-                            </div>
-                        </td>
-                    </tr> --}}
 
 
                 </tbody>
@@ -103,7 +104,7 @@
 
 
     <div class="modal" id="tambah-tamu-modal">
-        <div class="modal-box">
+        <div class="modal-box w-11/12 max-w-5xl">
             <div class="flex justify-between">
                 <div class="">
                     <h3 class="font-bold text-lg">Tambah Tamu Anda :)</h3>
@@ -130,13 +131,30 @@
                             <label class="label">
                                 <span class="label-text">Nama Tamu</span>
                             </label>
-                            <input type="text" placeholder="Type here" wire:model="nama_tamu.{{$i}}" class="input input-bordered w-full " />
+                            <input type="text" placeholder="XXXXX & XXXXX" wire:model="nama_tamu.{{$i}}" class="input input-bordered w-full " />
                         </div>
                         <div class="flex-auto">
                             <label class="label">
                                 <span class="label-text">No Tlp</span>
                             </label>
-                            <input type="number" placeholder="Type here" wire:model="no_tlp_tamu.{{$i}}" class="input input-bordered w-full " />
+                            <input type="number" placeholder="08XXXXXX" wire:model="no_tlp_tamu.{{$i}}" class="input input-bordered w-full " />
+                        </div>
+                        <div class="flex-auto">
+                            <label class="label">
+                                <span class="label-text">Type</span>
+                            </label>
+                            <div class="form-control">
+                                <label class="label cursor-pointer">
+                                    <input type="radio" name="type_tamu.{{$i}}" wire:model="type_tamu.{{$i}}"  class="radio checked:bg-blue-500"  value="Holy & Wedding" />
+                                  <span class="label-text"  >Holy & Wedding</span>
+                                </label>
+                              </div>
+                              <div class="form-control">
+                                <label class="label cursor-pointer">
+                                    <input type="radio" name="type_tamu.{{$i}}" wire:model="type_tamu.{{$i}}"  class="radio checked:bg-blue-500 " value="Wedding"  />
+                                  <span class="label-text" >Wedding</span>
+                                </label>
+                              </div>
                         </div>
                     </div>
 
