@@ -14,6 +14,10 @@ class HomeV2 extends Component
 
     public function mount(Request $request)
     {
+
+        $path_get = trim($request->decodedPath(), '/');
+
+        if ($path_get !== '') {
         $path = $request->path(); // Get the path from the URL
         $segments = explode('/', $path); // Split the path into segments
         $this->urlSegment = end($segments); // Get the last segment
@@ -33,6 +37,7 @@ class HomeV2 extends Component
         $tamu = MTamu::where('nama_tamu',$trimmedUrlSegment)->get();
         if(count($tamu) <= 0)
         return redirect()->to('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
+        }
     }
 
     public function render()

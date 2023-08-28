@@ -26,15 +26,28 @@ use Illuminate\Auth\Events\Logout;
 // });
 
 
+// Route::post('/logout', 'App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+
+
+Route::middleware(['web'])->group(function () {
 Route::get('/login', LoginComponen::class)->name('login');
-Route::get('/logout', LoginComponen::class,'logout')->name('logout');
 
+Route::get('/logout', [LoginComponen::class, 'logout'])->name('logout');
 
-// Admin
-Route::prefix('admin')->group(function () {
-    Route::get('/beranda', AdminHome::class)->name('admin.beranda')->middleware('auth');
-    Route::get('/tamu', Tamu::class)->name('admin.tamu')->middleware('auth');
+// Route::get('/logout', LoginComponen::class, 'logout')->name('logout');
 });
+
+Route::middleware(['auth'])->group(function () {
+    // Your protected routes using Livewire components
+    // Admin
+    Route::prefix('admin')->group(function () {
+        Route::get('/beranda', AdminHome::class)->name('admin.beranda')->middleware('auth');
+        Route::get('/tamu', Tamu::class)->name('admin.tamu')->middleware('auth');
+
+    });
+});
+
+
 
 
 // Web

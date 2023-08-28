@@ -3,10 +3,13 @@
 namespace App\Http\Livewire;
 
 use App\Models\User;
-use Illuminate\Console\View\Components\Alert;
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Console\View\Components\Alert;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+
+use function Laravel\Prompts\alert;
 
 class LoginComponen extends Component
 {
@@ -14,6 +17,12 @@ class LoginComponen extends Component
     public $username;
     public $password;
 
+
+    public function mount(){
+        if (Auth::check()) {
+            return redirect()->route('admin.beranda');// Change the URL as needed
+        }
+    }
     public function render()
     {
         return view('livewire.login-componen')->layout('components.layout-admin');
@@ -26,12 +35,18 @@ class LoginComponen extends Component
             'password' => 'required',
         ]);
 
-        $user = User::where('username', $this->username)->first();
 
-        if ($user && Hash::check($this->password, $user->password)) {
-            auth()->login($user);
+        $credentials = [
+            'username' => $this->username,
+            'password' => $this->password,
+        ];
 
-            return redirect()->intended('admin/beranda');
+        if (Auth::attempt($credentials)) {
+            // Authentication successful
+            return redirect()->route('admin.beranda'); // Replace with your dashboard route
+        } else {
+            // Authentication failed
+            session()->flash('error', 'Invalid credentials.');
         }
 
         $this->username = '';
@@ -41,9 +56,11 @@ class LoginComponen extends Component
     }
 
     public function logout() {
-        auth()->logout();
+        Auth::logout();
+        // dd(session()->all());
+        // $this->alert('Login First Lah');
 
-        return redirect('/login');
+        return redirect()->route('login');
     }
 
 }
