@@ -38,6 +38,7 @@ Route::prefix('admin')->group(function () {
 
 
 // Web
+Route::get('/{Key}', HomeV2::class)->name('home');
 Route::get('/', HomeV2::class)->name('home');
 
 

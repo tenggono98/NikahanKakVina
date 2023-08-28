@@ -270,6 +270,8 @@
 
     <div class="fixed bottom-0 bg-white bg-opacity-50 w-screen h-[13%] md:h-[10%] md:p-4 p-2 ">
 
+        {{ $trimmedUrlSegment ?? 'TIdak ada' }}
+
         <h1 class="text-center md:text-xl text-md text-[#572841]  " style="font-family: spinnaker;">Apakah Anda Hadir ?</h1>
         <div class="flex justify-center ">
 
