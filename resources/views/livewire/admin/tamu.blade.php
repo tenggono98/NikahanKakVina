@@ -63,10 +63,10 @@
 
                             <div class="flex gap-3">
                                 <div class="">
-                                    <button class="btn btn-secondary w-full" wire:click="copy()" onclick="copyLink('https://wa.me/{{  preg_replace('/0/', '+62', $row['no_tlp_tamu'], 1) }}?text={{ $templateWA . ' ' . urlencode(url($row['link_tamu'])) }}  ')">Copy</button>
+                                    <button class="btn btn-secondary w-full" wire:click="copy()" onclick="copyLink('{{ url($row['link_tamu']) }}') ">Copy Link</button>
                                 </div>
                                 <div class="">
-                                    <a class="btn btn-accent w-full" target="_blank" href="https://wa.me/{{ preg_replace('/0/', '+62', $row['no_tlp_tamu'], 1) }}?text={{ $templateWA . ' ' . urlencode(url($row['link_tamu'])) }}" >Send</a>
+                                    <a class="btn btn-accent w-full" target="_blank" href="https://wa.me/{{ preg_replace('/0/', '+62', $row['no_tlp_tamu'], 1) }}?text={{ $templateWA . ' ' . urlencode(url($row['link_tamu'])) }}" >Send WA</a>
                                 </div>
                             </div>
                         </td>
