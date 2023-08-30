@@ -96,7 +96,7 @@
     {{-- Mobile --}}
     <div class="carousel w-[100vw] h-[100vh] md:hidden">
         <div id="slide1" class="carousel-item relative w-full">
-            <video class="w-screen h-screen block object-fill md:hidden" autoplay loop muted>
+            <video class="w-screen h-screen block object-fill md:hidden" autoplay loop muted playsinline>
                 <source src="{{ asset('videos/FAW DESAIN 1 HP.mp4') }}" type="video/mp4" />
             </video>
             <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
@@ -105,7 +105,7 @@
             </div>
         </div>
         <div id="slide2" class="carousel-item relative w-full">
-            <video class="w-screen h-screen block object-fill md:hidden" autoplay loop muted>
+            <video class="w-screen h-screen block object-fill md:hidden" autoplay loop muted playsinline>
                 <source src="{{ asset('videos/FAW DESAIN 2 HP.mp4') }}" type="video/mp4" />
             </video>
             <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
@@ -114,7 +114,7 @@
             </div>
         </div>
         <div id="slide3" class="carousel-item relative w-full">
-            <video class="w-screen h-screen block object-fill md:hidden" autoplay loop muted>
+            <video class="w-screen h-screen block object-fill md:hidden" autoplay loop muted playsinline>
                 <source src="{{ asset('videos/FAW DESAIN 3 HP.mp4') }}" type="video/mp4" />
             </video>
             <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
@@ -130,7 +130,7 @@
             </div>
         </div>
         <div id="slide5" class="carousel-item relative w-full">
-            <video class="w-screen h-screen block object-fill md:hidden" autoplay loop muted>
+            <video class="w-screen h-screen block object-fill md:hidden" autoplay loop muted playsinline>
                 <source src="{{ asset('videos/FAW DESAIN 4 HP.mp4') }}" type="video/mp4" />
             </video>
             <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
@@ -149,7 +149,7 @@
 
         {{-- Section 1 --}}
         <div class="w-[100vw] h-[100vh] section ">
-            <video id='video' class="w-screen h-screen object-fill  hidden md:block"loop muted autoplay>
+            <video id='video' class="w-screen h-screen object-fill  hidden md:block" loop muted autoplay playsinline>
                 <source src="{{ asset('videos/DESAIN 1.mp4') }}" type="video/mp4" />
             </video>
         </div>
@@ -157,7 +157,7 @@
 
         {{-- Section 2 --}}
         <div class="w-[100vw] h-[100vh] section">
-            <video id='video' class="w-screen h-screen object-fill  hidden md:block"loop muted autoplay>
+            <video id='video' class="w-screen h-screen object-fill  hidden md:block" loop muted autoplay playsinline>
                 <source src="{{ asset('videos/DESAIN 2.mp4') }}" type="video/mp4" />
             </video>
         </div>
@@ -165,7 +165,7 @@
 
         {{-- Section 3 --}}
         <div class="w-[100vw] h-[100vh] section">
-            <video id='video' class="w-screen h-screen object-fill  hidden md:block"loop muted autoplay>
+            <video id='video' class="w-screen h-screen object-fill  hidden md:block" loop muted autoplay playsinline>
                 <source src="{{ asset('videos/DESAIN 3.mp4') }}" type="video/mp4" />
             </video>
         </div>
@@ -250,7 +250,7 @@
 
         <div class="w-[100vw] h-[100vh] section">
 
-            <video id='video' class="w-screen h-screen object-fill  hidden md:block"loop muted autoplay>
+            <video id='video' class="w-screen h-screen object-fill  hidden md:block" loop muted autoplay playsinline>
                 <source src="{{ asset('videos/DESAIN 4.mp4') }}" type="video/mp4" />
             </video>
 
