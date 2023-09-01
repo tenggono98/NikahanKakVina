@@ -21,7 +21,7 @@
             src:url({{ asset('font/Geovano Sans Regular.otf')}})
         }
     </style>
-    
+
     @vite('resources/css/app.css')
     <title>Wedding invitation of Arie and Vina</title>
     @livewireStyles
@@ -30,6 +30,8 @@
 
     {{ $slot }}
 
-    @livewireStyles
+    @livewireScripts
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <x-livewire-alert::scripts />
 </body>
 </html>

@@ -174,8 +174,8 @@ Arie and Vina
                               </div>
                               <div class="form-control">
                                 <label class="label cursor-pointer">
-                                    <input type="radio" name="type_tamu.{{$i}}" wire:model="type_tamu.{{$i}}"  class="radio checked:bg-blue-500 " value="Wedding"  />
-                                  <span class="label-text" >Wedding</span>
+                                    <input type="radio" name="type_tamu.{{$i}}" wire:model="type_tamu.{{$i}}"  class="radio checked:bg-blue-500 " value="Holy"  />
+                                  <span class="label-text" >Holy</span>
                                 </label>
                               </div>
                         </div>

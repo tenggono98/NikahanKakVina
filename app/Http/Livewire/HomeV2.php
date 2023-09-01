@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\CommentTamu;
 use App\Models\MTamu;
+use Illuminate\Console\View\Components\Alert;
 use Livewire\Component;
 use Illuminate\Http\Request;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
@@ -13,11 +14,19 @@ class HomeV2 extends Component
 
     public $urlSegment;
     public $trimmedUrlSegment;
+    public $id_tamu;
     public $flag_tamu = false;
+    public $flag_tamu_alamat;
+    public $jumlah_tamu;
+
 
     public $comment_nama_tamu, $comment_isi_tamu;
 
     use LivewireAlert;
+
+    protected $listeners = [
+        'confirmed_decline'
+    ];
 
     public function mount(Request $request)
     {
@@ -52,14 +61,24 @@ class HomeV2 extends Component
 
     public function render()
     {
+        if($this->trimmedUrlSegment !== ''){
+            $tamu = MTamu::where('nama_tamu',$this->trimmedUrlSegment)->first();
+            $this->id_tamu = $tamu->id ?? '';
+            $this->comment_nama_tamu = $this->trimmedUrlSegment;
+            $comment_tamu = CommentTamu::where('status',true)->get();
 
-        app('debugbar')->info($this->flag_tamu);
+            // Update Visit Tamu
+            $visit_tamu = MTamu::find($this->id_tamu);
 
-        return view('livewire.home-v2')->layout('components.layout');
+            $visit_tamu->visit_website_status = 'true';
+            $visit_tamu->save();
+        }
+
+        return view('livewire.home-v2',compact('comment_tamu','tamu'))->layout('components.layout');
     }
 
     public function send_comment(){
-        app('debugbar')->info($this->flag_tamu);
+
         $nama_comment = $this->trimmedUrlSegment;
         $isi_comment = $this->comment_isi_tamu;
 
@@ -72,6 +91,31 @@ class HomeV2 extends Component
         $tamu->save();
         $this->alert('success','Comment Berhasil di Post !');
 
+        $this->comment_isi_tamu = '';
+
+    }
+
+
+
+
+    public function confirmed_decline()
+    {
+        // Do something
+        $tamu = MTamu::find($this->id_tamu);
+        $tamu->hadir = 'Tidak';
+        $tamu->jumlah_tamu = 0;
+        $tamu->save();
+        $this->alert('info','Kehadiran Sudah Disimpan');
+    }
+
+    public function confirmed_accept()
+    {
+        // Do something
+        $tamu = MTamu::find($this->id_tamu);
+        $tamu->hadir = 'Iya';
+        $tamu->jumlah_tamu = $this->jumlah_tamu;
+        $tamu->save();
+        $this->alert('info','Kehadiran Sudah Disimpan');
     }
 
 

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('visit_website_status')->default('false');
             $table->string('link_tamu')->nullable();
             $table->string('hadir')->default('false');
+            $table->integer('jumlah_tamu')->nullable()->default(0);
             $table->timestamps();
         });
     }
