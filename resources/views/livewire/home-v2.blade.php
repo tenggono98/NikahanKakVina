@@ -93,6 +93,108 @@
 
 
 
+
+
+    {{-- Opening Page --}}
+
+    {{-- Mobile --}}
+
+
+    <div class="h-screen w-screen md:hidden z-10 fixed    " id="desktop-opening-mobile">
+
+        <div class=" w-full h-full  z-0  bg-cover bg-center  bg-no-repeat  px-16   "
+            style="background-image: url({{ asset('img/opening-main-desktopV2.png') }})">
+
+            <div class="w-full flex flex-col ">
+
+                <div class="mb-10 mt-32">
+                    <p class="text-white font-thin  text-2xl">Dear,</p>
+                    <p class="text-white  text-2xl"> {{ $trimmedUrlSegment ?? 'Tamu' }}</p>
+                </div>
+
+
+
+            <div class="flex w-full flex-col gap-5 ">
+
+
+                <img src="{{ asset('img/E-Invitation-Homepage_0002_Vector-Smart-Object.png') }}" class="bg-auto w-full mx-auto"
+                alt="">
+            <h1 class="uppercase mx-auto text-xl text-white font-semibold">Friday, 29th September 2023</h1>
+
+            <button class="btn bg-white text-black border-none rounded-full  w-[90%] mx-auto font-bold text-xl "
+                onclick="opening_mobile()">open Invitation</button>
+            </div>
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+    {{-- Mobile --}}
+
+    {{-- Desktop --}}
+    <div class="h-screen w-screen md:block md:fixed z-20 hidden    " id="desktop-opening">
+        <div class=" h-screen w-screen z-0 relative bg-blend-darken "
+            style="background-image: url({{ asset('img/opening-desktop-blur.png') }})">
+            <div class="z-10  h-screen w-[40em] mx-auto bg-no-repeat px-16    "
+                style="background-image: url({{ asset('img/opening-main-desktop.png') }})">
+
+                <div class="w-full flex flex-col ">
+
+                    <div class="mb-10 mt-32">
+                        <p class="text-white font-thin  text-2xl">Dear,</p>
+                        <p class="text-white  text-2xl"> {{ $trimmedUrlSegment ?? 'Tamu' }}</p>
+                    </div>
+
+
+
+                <div class="flex w-full flex-col gap-5 ">
+
+
+                    <img src="{{ asset('img/E-Invitation-Homepage_0002_Vector-Smart-Object.png') }}" class="bg-auto w-full mx-auto"
+                    alt="">
+                <h1 class="uppercase mx-auto text-xl text-white font-semibold">Friday, 29th September 2023</h1>
+
+                <button class="btn bg-white text-black border-none rounded-full  w-[90%] mx-auto font-bold text-xl "
+                    onclick="opening()">open Invitation</button>
+                </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    {{-- Desktop --}}
+
+    <script>
+        function opening() {
+            let opening_section = document.getElementById('desktop-opening');
+            let toolbar = document.getElementById('toolbar');
+
+            opening_section.style.display = 'none';
+            window.scrollTo(0, 0);
+
+        }
+
+        function opening_mobile() {
+            let opening_section = document.getElementById('desktop-opening-mobile');
+            opening_section.style.display = 'none';
+
+            window.scrollTo(0, 0);
+
+        }
+    </script>
+
+
+
+    {{-- Opening Page --}}
+
+
+
     {{-- Mobile --}}
     <div class="carousel w-[100vw] h-[100vh] md:hidden">
         <div id="slide1" class="carousel-item relative w-full">
@@ -147,9 +249,13 @@
 
 
 
+
+
+
         {{-- Section 1 --}}
         <div class="w-[100vw] h-[100vh] section ">
-            <video id='video' class="w-screen h-screen object-fill  hidden md:block" loop muted autoplay playsinline>
+            <video id='video' class="w-screen h-screen object-fill  hidden md:block" loop muted autoplay
+                playsinline>
                 <source src="{{ asset('videos/DESAIN 1.mp4') }}" type="video/mp4" />
             </video>
         </div>
@@ -157,7 +263,8 @@
 
         {{-- Section 2 --}}
         <div class="w-[100vw] h-[100vh] section">
-            <video id='video' class="w-screen h-screen object-fill  hidden md:block" loop muted autoplay playsinline>
+            <video id='video' class="w-screen h-screen object-fill  hidden md:block" loop muted autoplay
+                playsinline>
                 <source src="{{ asset('videos/DESAIN 2.mp4') }}" type="video/mp4" />
             </video>
         </div>
@@ -165,7 +272,8 @@
 
         {{-- Section 3 --}}
         <div class="w-[100vw] h-[100vh] section">
-            <video id='video' class="w-screen h-screen object-fill  hidden md:block" loop muted autoplay playsinline>
+            <video id='video' class="w-screen h-screen object-fill  hidden md:block" loop muted autoplay
+                playsinline>
                 <source src="{{ asset('videos/DESAIN 3.mp4') }}" type="video/mp4" />
             </video>
         </div>
@@ -182,17 +290,20 @@
                             alt="">
                         <p class="md:-mt-5 text-center text-3xl text-[#572841] " style="font-family: geovano;">WISHES
                         </p>
-                        <p class="text-center text-md text-[#572841]  " style="font-family: spinnaker;">Sending prayers
+                        <p class="text-center text-md text-[#572841]  " style="font-family: spinnaker;">Sending
+                            prayers
                             for the Bride & Groom</p>
                     </div>
 
 
                     <div class="flex flex-col gap-3 bg-[#E8895B] py-10 px-16 w-[50vw] h-[70%]">
 
+
+                        @if ($flag_tamu == true)
                         <div class="w-full">
                             <input type="text"
                                 class="w-full p-3 text-sm placeholder:text-md bg-[#F3EAE5] text-[#572841] font-bold text-md  placeholder:text-[#572841] placeholder:font-bold placeholder:opacity-50"
-                                style="font-family:spinnaker" placeholder="NAME">
+                                style="font-family:spinnaker" placeholder="NAME" wire:model="comment_nama_tamu" value="{{ $trimmedUrlSegment }}" readonly>
 
 
                         </div>
@@ -200,16 +311,18 @@
 
                             <textarea
                                 class="w-full p-3 bg-[#F3EAE5] text-[#572841] font-bold text-sm  placeholder:text-[#572841] placeholder:font-bold placeholder:opacity-50"
-                                style="font-family:spinnaker" name="" id="" cols="20" rows="3" placeholder="MESSAGE"></textarea>
+                                style="font-family:spinnaker" name="" id="" cols="20" rows="3"
+                                placeholder="MESSAGE" wire:model="comment_isi_tamu"></textarea>
                         </div>
 
                         <div class="mx-auto">
                             <button
                                 class="btn mx-auto  rounded-none text-[#572841] border-none bg-[#F3EAE5] font-bold text-md  "
                                 style="font-family:spinnaker">
-                                <span class="opacity-50">SEND</span>
+                                <span class="opacity-50" wire:click="send_comment()">SEND</span>
                             </button>
                         </div>
+                        @endif
 
                         <div class="h-full flex flex-col gap-2 overflow-y-scroll">
 
@@ -250,7 +363,8 @@
 
         <div class="w-[100vw] h-[100vh] section">
 
-            <video id='video' class="w-screen h-screen object-fill  hidden md:block" loop muted autoplay playsinline>
+            <video id='video' class="w-screen h-screen object-fill  hidden md:block" loop muted autoplay
+                playsinline>
                 <source src="{{ asset('videos/DESAIN 4.mp4') }}" type="video/mp4" />
             </video>
 
@@ -268,19 +382,21 @@
 
     {{-- Toolbar Action --}}
 
-    <div class="fixed bottom-0 bg-white bg-opacity-50 w-screen h-[13%] md:h-[10%] md:p-4 p-2 ">
+    <div id="toolbar" class="fixed bottom-0 bg-white bg-opacity-50 z-0 w-screen h-[13%] md:h-[10%] md:p-4 p-2 ">
 
-        {{ $trimmedUrlSegment ?? 'TIdak ada' }}
 
-        <h1 class="text-center md:text-xl text-md text-[#572841]  " style="font-family: spinnaker;">Apakah Anda Hadir ?</h1>
+        <h1 class="text-center md:text-xl text-md text-[#572841]  " style="font-family: spinnaker;">Apakah Anda Hadir
+            ?</h1>
         <div class="flex justify-center ">
 
             <div class="">
-                <button type="button" class="focus:outline-none text-white w-20 bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Iya</button>
+                <button type="button"
+                    class="focus:outline-none text-white w-20 bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Iya</button>
 
             </div>
             <div class="">
-                <button type="button" class="focus:outline-none text-white w-20 bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Tidak</button>
+                <button type="button"
+                    class="focus:outline-none text-white w-20 bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Tidak</button>
 
             </div>
 

@@ -44,6 +44,29 @@
 
                     @foreach ($tamu_array as $key => $row)
                     <tr>
+                        @php
+                            // $isi_pesan_WA = "Dear%2C%20".$row['nama_tamu']."%0A%0AGuess%20what%3F%20Arie%20and%20Vina%20are%20taking%20the%20plunge%20into%20the%20sea%20of%20eternal%20love%2C%20and%20they%20want%20YOU%20to%20be%20a%20part%20of%20their%20epic%20adventure%21%0A%0A%F0%9F%8E%89%20Save%20the%20Date%3A%20Friday%2C%2029th%20September%202023%0A%F0%9F%8C%9F%20Invitation%20Link%3A%20".url($row['link_tamu'])."%0A%0ASo%2C%20mark%20your%20calendar%2C%20grab%20your%20dancing%20shoes%2C%20and%20get%20ready%20to%20celebrate%20this%20match%20made%20in%20heaven%21%20Our%20joyful%20jamboree%20wouldn%27t%20be%20the%20same%20without%20your%20fantastic%20presence.%0A%0ALet%27s%20create%20unforgettable%20memories%20together%2C%20full%20of%20love%2C%20laughter%2C%20and%20maybe%20a%20little%20bit%20of%20crazy%20dancing.%20Your%20blessing%20and%20prayers%20are%20the%20icing%20on%20this%20matrimonial%20cake.%0A%0AStay%20awesome%20and%20stay%20healthy%2C%20because%20we%20can%27t%20wait%20to%20see%20you%20there%21%0A%0ACheers%20to%20love%20and%20laughter%2C%0AArie%20and%20Vina%20%0A%28because%20you%27re%20the%20life%20of%20the%20party%2C%C2%A0too%21%29%C2%A0%F0%9F%98%84";
+
+                            $isi_pesan_WA = urlencode("Dear, ".$row['nama_tamu']."
+
+Guess what? Arie and Vina are taking the plunge into the sea of eternal love, and they want YOU to be a part of their epic adventure!
+
+🎉 Save the Date: Friday, 29th September 2023
+🌟 Invitation Link: ".url($row['link_tamu'])."
+
+So, mark your calendar, grab your dancing shoes, and get ready to celebrate this match made in heaven! Our joyful jamboree wouldn't be the same without your fantastic presence.
+
+Let's create unforgettable memories together, full of love, laughter, and maybe a little bit of crazy dancing. Your blessing and prayers are the icing on this matrimonial cake.
+
+Stay awesome and stay healthy, because we can't wait to see you there!
+
+Cheers to love and laughter,
+Arie and Vina
+(because you're the life of the party, too!) 😄");
+
+
+
+                        @endphp
                         <td><input type="checkbox" checked="checked" name="checklist_tamu.{{ $key ?? 0 }}" wire:model="checklist_tamu.{{ $key ?? 0 }}" class="checkbox"  /></td>
                         <td>{{ $row['nama_tamu'] }}</td>
                         <td>{{ $row['no_tlp_tamu'] }}</td>
@@ -66,7 +89,7 @@
                                     <button class="btn btn-secondary w-full" wire:click="copy()" onclick="copyLink('{{ url($row['link_tamu']) }}') ">Copy Link</button>
                                 </div>
                                 <div class="">
-                                    <a class="btn btn-accent w-full" target="_blank" href="https://wa.me/{{ preg_replace('/0/', '+62', $row['no_tlp_tamu'], 1) }}?text={{ $templateWA . ' ' . urlencode(url($row['link_tamu'])) }}" >Send WA</a>
+                                    <a class="btn btn-accent w-full" target="_blank" href="https://api.whatsapp.com/send?phone={{ preg_replace('/0/', '+62', $row['no_tlp_tamu'], 1) }}&text={{ $isi_pesan_WA  }}" >Send WA</a>
                                 </div>
                             </div>
                         </td>

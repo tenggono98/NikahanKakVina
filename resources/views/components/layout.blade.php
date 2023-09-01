@@ -14,12 +14,19 @@
             font-weight: 100;
             src:url({{ asset('font/Geovano-Sans-Regular.otf')}})
         }
+
+        @font-face{
+            font-family: geovano;
+            font-weight: 100;
+            src:url({{ asset('font/Geovano Sans Regular.otf')}})
+        }
     </style>
+    
     @vite('resources/css/app.css')
-    <title>Document</title>
+    <title>Wedding invitation of Arie and Vina</title>
     @livewireStyles
 </head>
-<body>
+<body >
 
     {{ $slot }}
 
