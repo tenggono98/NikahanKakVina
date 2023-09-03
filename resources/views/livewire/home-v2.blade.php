@@ -419,25 +419,33 @@
         {{-- Section 3 --}}
 
         {{-- Wishes Begin --}}
-        <section id="wishes" class="w-[100vw] h-full section">
-            <div class=" h-full  pt-10 pb-10  md:p-0 w-screen    bg-cover relative "
+        <section id="wishes" class="w-[100vw] h-full section ">
+            <div class=" h-full  pt-10 pb-10  md:p-0 w-screen    bg-cover    "
             style="background-image: url('{{ asset('img/Design 4 Desktop.PNG') }}')">
 
 
-                <div class="w-full flex absolute top-[25%] left-[30%]">
-                    <div class="mx-auto">
+            <div 
+
+
+                <div class="w-full flex flex-col absolute top-[23%] left-0 right-0 bottom-0  ">
+
+
+                    <div class="mx-auto mb-5 w-full relative   ">
+                        <div class="absolute left-[81%]">
                         <a href="#sentgifts"  class="btn bg-[#b21e3a] text-white border-none ">Send Gift</a>
 
+                        </div>
+
                     </div>
-                </div>
 
 
 
 
 
 
-                <div class="w-full flex absolute top-[15%]">
-                    <div class="w-screen h-max flex flex-col  justify-start items-center mt-[5em]  ">
+
+                <div class="w-full flex ">
+                    <div class="w-screen h-max flex flex-col  justify-start items-center   ">
 
 
 
@@ -453,6 +461,7 @@
                                     for the Bride & Groom</p>
                             </div>
 
+                            @if ($id_tamu !== null)
                             <div id="toolbar" class=" bottom-0   z-0 w-full  md:p-4 p-2 ">
 
 
@@ -476,6 +485,7 @@
                                 </div>
 
                             </div>
+                            @endif
 
 
                             @if ($flag_tamu == true)
@@ -539,6 +549,10 @@
                     </div>
                 </div>
 
+            </div>
+
+        </div>
+
 
 
 
@@ -561,11 +575,10 @@
     @if ($id_tamu !== null)
     {{-- Toolbar Action --}}
 
-    <div id="toolbar" class="fixed bottom-0 bg-white bg-opacity-50 z-0 w-screen h-[11%] md:h-[10%] md:p-4 p-2 ">
+    {{-- <div id="toolbar" class="fixed bottom-0 bg-white bg-opacity-50 z-0 w-screen h-[11%] md:h-[10%] md:p-4 p-2 ">
 
 
-        <h1 class="text-center md:text-xl text-md text-[#572841]  " style="font-family: spinnaker;">Konfirmasi Kehadiran
-            ?</h1>
+        <h1 class="text-center md:text-xl text-md text-[#572841]  " style="font-family: spinnaker;">Konfirmasi Kehadiran ?</h1>
         <div class="flex justify-center ">
 
             <div class="">
@@ -583,7 +596,7 @@
 
         </div>
 
-    </div>
+    </div> --}}
 
     {{-- Toolbar Action --}}
     @endif
