@@ -18,6 +18,7 @@ class HomeV2 extends Component
     public $flag_tamu = false;
     public $flag_tamu_alamat;
     public $jumlah_tamu;
+    public $tamu , $comment_tamu;
 
 
     public $comment_nama_tamu, $comment_isi_tamu;
@@ -61,20 +62,23 @@ class HomeV2 extends Component
 
     public function render()
     {
-        if($this->trimmedUrlSegment !== ''){
-            $tamu = MTamu::where('nama_tamu',$this->trimmedUrlSegment)->first();
-            $this->id_tamu = $tamu->id ?? '';
+        if($this->trimmedUrlSegment !== null){
+            $this->tamu = MTamu::where('nama_tamu',$this->trimmedUrlSegment)->first();
+            $this->id_tamu = $this->tamu->id ?? '';
             $this->comment_nama_tamu = $this->trimmedUrlSegment;
-            $comment_tamu = CommentTamu::where('status',true)->get();
+            $this->comment_tamu = CommentTamu::where('status',true)->orderBy('updated_at','DESC')->get();
 
             // Update Visit Tamu
             $visit_tamu = MTamu::find($this->id_tamu);
 
             $visit_tamu->visit_website_status = 'true';
             $visit_tamu->save();
-        }
+        }else
+            $this->comment_tamu = CommentTamu::where('status',true)->orderBy('updated_at','DESC')->get();
 
-        return view('livewire.home-v2',compact('comment_tamu','tamu'))->layout('components.layout');
+           
+
+        return view('livewire.home-v2')->layout('components.layout');
     }
 
     public function send_comment(){
@@ -117,6 +121,12 @@ class HomeV2 extends Component
         $tamu->save();
         $this->alert('info','Kehadiran Sudah Disimpan');
     }
+
+    public function copy_alert($value){
+        $this->alert('info',$value. ' Sudah di copy ke klipboard');
+    }
+
+
 
 
 

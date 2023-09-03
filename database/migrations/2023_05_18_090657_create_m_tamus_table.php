@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('m_tamus', function (Blueprint $table) {
             $table->id();
             $table->string('nama_tamu');
-            $table->string('no_tlp_tamu');
+            $table->string('no_tlp_tamu')->nullable();
             $table->string('type_tamu');
             $table->string('visit_website_status')->default('false');
             $table->string('link_tamu')->nullable();

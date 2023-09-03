@@ -23,7 +23,7 @@ module.exports = {
         }
     },
 },
-   plugins: [require("daisyui") , require('tailwindcss-animatecss')],
+   plugins: [require("daisyui") , require('tailwindcss-animatecss') ],
 
 }
 

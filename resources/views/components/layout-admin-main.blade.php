@@ -9,6 +9,7 @@
     <title>{{ $page_name }}</title>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="icon" href="{{ asset('img/logo_nikaj.jpg') }}" type="image/icon type">
 
     @livewireStyles
 </head>

@@ -121,7 +121,7 @@
                         class="bg-auto w-full mx-auto" alt="">
                     <h1 class="uppercase mx-auto text-xl text-white font-semibold">Friday, 29th September 2023</h1>
 
-                    <button class="btn bg-white text-black border-none rounded-full  w-[90%] mx-auto font-bold text-xl "
+                    <button class="btn bg-white text-black border-none rounded-full  w-[90%] mx-auto font-bold text-xl hover:grayscale-0 "
                         onclick="opening_mobile()">open Invitation</button>
                 </div>
 
@@ -139,7 +139,7 @@
     <div class="h-screen w-screen md:block md:fixed z-20 hidden    " id="desktop-opening" wire:ignore>
         <div class=" h-screen w-screen z-0 relative bg-blend-darken "
             style="background-image: url({{ asset('img/opening-desktop-blur.png') }})">
-            <div class="z-10  h-screen w-[40em] mx-auto bg-no-repeat px-16    "
+            <div class="z-10  h-screen w-[40em] mx-auto bg-no-repeat  bg-center px-16    "
                 style="background-image: url({{ asset('img/opening-main-desktop.png') }})">
 
                 <div class="w-full flex flex-col ">
@@ -212,7 +212,7 @@
                 <source src="{{ asset('videos/FAW DESAIN 2 HP.mp4') }}" type="video/mp4" />
             </video>
             <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                @if($id_tamu !== '')
+                @if($id_tamu !== null)
                 <a href="#slide1" class="btn btn-circle btn-ghost text-white">❮</a>
                 <a href="#slide3" class="btn btn-circle btn-ghost text-white">❯</a>
                 @else
@@ -221,7 +221,7 @@
                 @endif
             </div>
         </div>
-        @if ($id_tamu !== '')
+        @if ($id_tamu !== null)
         <div id="slide3" class="carousel-item relative w-full">
 
                 @if ($tamu->type_tamu == 'Holy & Wedding')
@@ -235,7 +235,7 @@
                 @endif
 
             <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                @if($id_tamu !== '')
+                @if($id_tamu !== null)
                 <a href="#slide2" class="btn btn-circle btn-ghost text-white">❮</a>
                 <a href="#slide4" class="btn btn-circle btn-ghost text-white">❯</a>
                 @endif
@@ -247,79 +247,95 @@
         <div id="slide4" class="carousel-item relative w-full">
             {{-- Wishes Begin --}}
             <section id="wishes" class="w-[100vw] h-max section">
-                <div class=" h-max  pt-10 pb-10  md:pt-0 w-screen  bg-fixed "
-                    style="background-image: url('{{ asset('img/BACKGROUND.jpg') }}')">
+                <div class=" h-screen  pt-10 pb-10  md:pt-0 w-screen  bg-cover "
+                    style="background-image: url('{{ asset('img/Design 4 Mobile.PNG') }}')">
+                    <div class="relative h-[5em]">
+                        <div class=" top-3/4  absolute">
+                            <div class="pl-[25%] mb-12">
 
-                    <div class="w-screen h-screen flex flex-col  justify-start items-center">
-                        <div class="md:mt-5 md:mb-8">
-                            <img src="{{ asset('img/Asset 5.svg') }}" class="h-[10vh] md:h-[10vh] w-auto mx-auto "
-                                alt="">
-                            <p class="md:-mt-5 text-center text-3xl text-[#572841] " style="font-family: geovano;">
-                                WISHES
-                            </p>
-                            <p class="text-center text-md text-[#572841]  " style="font-family: spinnaker;">Sending
-                                prayers
-                                for the Bride & Groom</p>
+
+                            <a href="#sentgifts"><button class="btn bg-[#b21e3a] text-white border-none" >Send Gift</button></a>
                         </div>
 
+                        <div class="w-screen h-max flex flex-col  justify-start items-center   ">
+                            <div class="md:mt-5 md:mb-8">
 
-                        <div class="flex flex-col gap-3 bg-[#E8895B] mx-5 py-10 px-16 w-screen h-[70%]">
+                                <p class="md:-mt-5 text-center text-3xl text-[#b21e3a] " style="font-family: geovano;">
+                                    WISHES
+                                </p>
+                                <p class="text-center text-md text-[#b21e3a] " style="font-family: spinnaker;">Sending
+                                    prayers
+                                    for the Bride & Groom</p>
+                            </div>
 
 
-                            @if ($flag_tamu == true)
-                                <div class="w-full">
-                                    <input type="text"
-                                        class="w-full p-3 text-sm placeholder:text-md bg-[#F3EAE5] text-[#572841] font-bold text-md  placeholder:text-[#572841] placeholder:font-bold placeholder:opacity-50"
-                                        style="font-family:spinnaker" placeholder="NAME" wire:model="comment_nama_tamu"
-                                        wire:ignore.self readonly>
+                            <div class="flex flex-col gap-3 bg-[#E8895B] mx-5 py-10 px-16 w-[80vw] h-[45vh]">
 
 
-                                </div>
-                                <div class="w-full">
+                                @if ($flag_tamu == true)
+                                    <div class="w-full">
+                                        <input type="text"
+                                            class="w-full p-3 text-sm placeholder:text-md bg-[#F3EAE5] text-[#572841] font-bold text-md  placeholder:text-[#572841] placeholder:font-bold placeholder:opacity-50"
+                                            style="font-family:spinnaker" placeholder="NAME" wire:model="comment_nama_tamu"
+                                            wire:ignore.self readonly>
 
-                                    <textarea
-                                        class="w-full p-3 bg-[#F3EAE5] text-[#572841] font-bold text-sm  placeholder:text-[#572841] placeholder:font-bold placeholder:opacity-50"
-                                        style="font-family:spinnaker" name="" id="" cols="20" rows="3" placeholder="MESSAGE"
-                                        wire:model="comment_isi_tamu" wire:ignore.self></textarea>
-                                </div>
 
-                                <div class="mx-auto">
-                                    <button
-                                        class="btn mx-auto  rounded-none text-[#572841] border-none bg-[#F3EAE5] font-bold text-md  "
-                                        style="font-family:spinnaker">
-                                        <span class="opacity-50" wire:click="send_comment()">SEND</span>
-                                    </button>
-                                </div>
-                            @endif
+                                    </div>
+                                    <div class="w-full">
 
-                            <div class="h-full flex flex-col gap-2 overflow-y-scroll">
+                                        <textarea
+                                            class="w-full p-3 bg-[#F3EAE5] text-[#572841] font-bold text-sm  placeholder:text-[#572841] placeholder:font-bold placeholder:opacity-50"
+                                            style="font-family:spinnaker" name="" id="" cols="20" rows="3" placeholder="MESSAGE"
+                                            wire:model="comment_isi_tamu" wire:ignore.self></textarea>
+                                    </div>
 
-                                @foreach ($comment_tamu as $item)
-                                    <div class="flex flex-col ">
-                                        <div class="bg-[#F3EAE5] flex flex-col gap-2 px-5 py-3">
-                                            <div class="">
-                                                <p class="text-[#572841] text-sm font-bold"
-                                                    style="font-family: spinnaker;">{{ $item->nama_tamu }}</p>
-                                            </div>
-                                            <div class="">
-                                                <p class="text-[#572841] text-sm" style="font-family: spinnaker;">
-                                                    {{ $item->comment_tamu }}</p>
+                                    <div class="mx-auto">
+                                        <button
+                                            class="btn mx-auto  rounded-none text-[#572841] border-none bg-[#F3EAE5] font-bold text-md  "
+                                            style="font-family:spinnaker">
+                                            <span class="opacity-50" wire:click="send_comment()">SEND</span>
+                                        </button>
+                                    </div>
+                                @endif
+
+                                @if($comment_tamu !== null)
+
+                                <div class="h-full flex flex-col gap-2 overflow-y-scroll">
+
+                                    @foreach ($comment_tamu as $item)
+                                        <div class="flex flex-col ">
+                                            <div class="bg-[#F3EAE5] flex flex-col gap-2 px-5 py-3">
+                                                <div class="">
+                                                    <p class="text-[#572841] text-sm font-bold"
+                                                        style="font-family: spinnaker;">{{ $item->nama_tamu }}</p>
+                                                </div>
+                                                <div class="">
+                                                    <p class="text-[#572841] text-sm break-words" style="font-family: spinnaker;">
+                                                        {{ $item->comment_tamu }}</p>
+                                                </div>
+
                                             </div>
 
                                         </div>
+                                    @endforeach
 
-                                    </div>
-                                @endforeach
+
+                                </div>
+                                @endif
+
+
 
 
                             </div>
 
-
-
+                        </div>
 
                         </div>
 
                     </div>
+
+
+
 
 
                 </div>
@@ -328,18 +344,23 @@
             {{-- Wishes End --}}
 
             <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                @if ($id_tamu !== null)
                 <a href="#slide3" class="btn btn-circle btn-ghost text-white">❮</a>
-                <a href="#slide5" class="btn btn-circle btn-ghost text-white">❯</a>
+                <a href="#slide1" class="btn btn-circle btn-ghost text-white">❯</a>
+                @else
+                <a href="#slide2" class="btn btn-circle btn-ghost text-white">❮</a>
+                <a href="#slide1" class="btn btn-circle btn-ghost text-white">❯</a>
+                @endif
             </div>
         </div>
 
 
-        <div id="slide5" class="carousel-item relative w-full">
+        {{-- <div id="slide5" class="carousel-item relative w-full">
             <video class="w-screen h-screen block object-fill md:hidden" autoplay loop muted playsinline>
                 <source src="{{ asset('videos/FAW DESAIN 4 HP.mp4') }}" type="video/mp4" />
             </video>
             <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                @if($id_tamu !== '')
+                @if($id_tamu !== null)
                 <a href="#slide4" class="btn btn-circle btn-ghost text-white">❮</a>
                 <a href="#slide1" class="btn btn-circle btn-ghost text-white">❯</a>
                 @else
@@ -347,7 +368,7 @@
                 <a href="#slide1" class="btn btn-circle btn-ghost text-white">❯</a>
                 @endif
             </div>
-        </div>
+        </div> --}}
     </div>
     {{-- Mobile --}}
 
@@ -379,7 +400,7 @@
         {{-- Section 2 --}}
 
         {{-- Section 3 --}}
-        @if ($id_tamu !== '')
+        @if ($id_tamu !== null)
             <div class="w-[100vw] h-[100vh] section">
 
                 @if ($tamu->type_tamu == 'Holy & Wedding')
@@ -398,114 +419,152 @@
         {{-- Section 3 --}}
 
         {{-- Wishes Begin --}}
-        <section id="wishes" class="w-[100vw] h-max section">
-            <div class="w-screen h-max  pt-10 pb-10 px-3 md:pt-0  md:px-0 md:pb-0  bg-fixed "
-                style="background-image: url('{{ asset('img/BACKGROUND.jpg') }}')">
+        <section id="wishes" class="w-[100vw] h-full section">
+            <div class=" h-full  pt-10 pb-10  md:p-0 w-screen    bg-cover relative "
+            style="background-image: url('{{ asset('img/Design 4 Desktop.PNG') }}')">
 
-                <div class="w-screen h-screen flex flex-col  justify-start items-center">
-                    <div class="md:mt-5 md:mb-8">
-                        <img src="{{ asset('img/Asset 5.svg') }}" class="h-[10vh] md:h-[10vh] w-auto mx-auto "
-                            alt="">
-                        <p class="md:-mt-5 text-center text-3xl text-[#572841] " style="font-family: geovano;">WISHES
-                        </p>
-                        <p class="text-center text-md text-[#572841]  " style="font-family: spinnaker;">Sending
-                            prayers
-                            for the Bride & Groom</p>
+
+                <div class="w-full flex absolute top-[25%] left-[30%]">
+                    <div class="mx-auto">
+                        <a href="#sentgifts"  class="btn bg-[#b21e3a] text-white border-none ">Send Gift</a>
+
                     </div>
+                </div>
 
 
-                    <div class="flex flex-col gap-3 bg-[#E8895B] py-10 px-16 w-[50vw] h-[70%]">
 
 
-                        @if ($flag_tamu == true)
-                            <div class="w-full">
-                                <input type="text"
-                                    class="w-full p-3 text-sm placeholder:text-md bg-[#F3EAE5] text-[#572841] font-bold text-md  placeholder:text-[#572841] placeholder:font-bold placeholder:opacity-50"
-                                    style="font-family:spinnaker" placeholder="NAME" wire:model="comment_nama_tamu"
-                                    wire:ignore.self readonly>
 
 
+                <div class="w-full flex absolute top-[15%]">
+                    <div class="w-screen h-max flex flex-col  justify-start items-center mt-[5em]  ">
+
+
+
+                        <div class="flex flex-col gap-3 bg-[#E8895B] bg-opacity-50 mx-5 py-10 px-16 w-[50vw] h-[50vh] overflow-y-scroll">
+
+                            <div class="md:mt-5 md:mb-8">
+
+                                <p class="md:-mt-5 text-center text-3xl text-[#b21e3a] " style="font-family: geovano;">
+                                    WISHES
+                                </p>
+                                <p class="text-center text-md text-[#b21e3a] " style="font-family: spinnaker;">Sending
+                                    prayers
+                                    for the Bride & Groom</p>
                             </div>
-                            <div class="w-full">
 
-                                <textarea
-                                    class="w-full p-3 bg-[#F3EAE5] text-[#572841] font-bold text-sm  placeholder:text-[#572841] placeholder:font-bold placeholder:opacity-50"
-                                    style="font-family:spinnaker" name="" id="" cols="20" rows="3"
-                                    placeholder="MESSAGE" wire:model="comment_isi_tamu" wire:ignore.self></textarea>
-                            </div>
+                            <div id="toolbar" class=" bottom-0   z-0 w-full  md:p-4 p-2 ">
 
-                            <div class="mx-auto">
-                                <button
-                                    class="btn mx-auto  rounded-none text-[#572841] border-none bg-[#F3EAE5] font-bold text-md  "
-                                    style="font-family:spinnaker">
-                                    <span class="opacity-50" wire:click="send_comment()">SEND</span>
-                                </button>
-                            </div>
-                        @endif
 
-                        <div class="h-full flex flex-col gap-2 overflow-y-scroll">
+                                <h1 class="text-center md:text-xl text-md text-[#572841]  " style="font-family: spinnaker;">Konfirmasi Kehadiran
+                                    ?</h1>
+                                <div class="flex justify-center ">
 
-                            @foreach ($comment_tamu as $item)
-                                <div class="flex flex-col ">
-                                    <div class="bg-[#F3EAE5] flex flex-col gap-2 px-5 py-3">
-                                        <div class="">
-                                            <p class="text-[#572841] text-sm font-bold"
-                                                style="font-family: spinnaker;">{{ $item->nama_tamu }}</p>
-                                        </div>
-                                        <div class="">
-                                            <p class="text-[#572841] text-sm" style="font-family: spinnaker;">
-                                                {{ $item->comment_tamu }}</p>
-                                        </div>
-
+                                    <div class="">
+                                        <a href="#hadirModal">
+                                            <button type="button"
+                                                class="focus:outline-none text-white w-20 bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Iya</button>
+                                        </a>
+                                    </div>
+                                    <div class="">
+                                        <a href="#tidakModal">
+                                        <button type="button"
+                                            class="focus:outline-none text-white w-20 bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Tidak</button>
+                                        </a>
                                     </div>
 
                                 </div>
-                            @endforeach
+
+                            </div>
+
+
+                            @if ($flag_tamu == true)
+                                <div class="w-full">
+                                    <input type="text"
+                                        class="w-full p-3 text-sm placeholder:text-md bg-[#F3EAE5] text-[#572841] font-bold text-md  placeholder:text-[#572841] placeholder:font-bold placeholder:opacity-50"
+                                        style="font-family:spinnaker" placeholder="NAME" wire:model="comment_nama_tamu"
+                                        wire:ignore.self readonly>
+
+
+                                </div>
+                                <div class="w-full">
+
+                                    <textarea
+                                        class="w-full p-3 bg-[#F3EAE5] text-[#572841] font-bold text-sm  placeholder:text-[#572841] placeholder:font-bold placeholder:opacity-50"
+                                        style="font-family:spinnaker" name="" id="" cols="20" rows="3" placeholder="MESSAGE"
+                                        wire:model="comment_isi_tamu" wire:ignore.self></textarea>
+                                </div>
+
+                                <div class="mx-auto">
+                                    <button  wire:click="send_comment()"
+                                        class="btn mx-auto  rounded-none text-[#572841] border-none bg-[#F3EAE5] font-bold text-md  "
+                                        style="font-family:spinnaker">
+                                        <span class="opacity-50">SEND</span>
+                                    </button>
+                                </div>
+                            @endif
+
+
+                            @if($comment_tamu !== null)
+                            <div class="h-full flex flex-col gap-2 ">
+
+                                @foreach ($comment_tamu as $item)
+                                    <div class="flex flex-col ">
+                                        <div class="bg-[#F3EAE5] flex flex-col gap-2 px-5 py-3">
+                                            <div class="">
+                                                <p class="text-[#572841] text-sm font-bold"
+                                                    style="font-family: spinnaker;">{{ $item->nama_tamu }}</p>
+                                            </div>
+                                            <div class="">
+                                                <p class="text-[#572841] text-sm break-words" style="font-family: spinnaker;">
+                                                    {{ $item->comment_tamu }}</p>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                @endforeach
+
+
+                            </div>
+                            @endif
+
+
+
+
 
 
                         </div>
 
-
-
-
                     </div>
-
                 </div>
 
 
-            </div>
 
-        </section>
-        {{-- Wishes End --}}
 
-        {{-- Section 4 --}}
 
-        <div class="w-[100vw] h-[100vh] section">
 
-            <video id='video' class="w-screen h-screen object-fill  hidden md:block" loop muted autoplay
-                playsinline>
-                <source src="{{ asset('videos/DESAIN 4.mp4') }}" type="video/mp4" />
-            </video>
 
 
 
 
 
         </div>
+        </section>
+        {{-- Wishes End --}}
 
 
-        {{-- Section 4 --}}
     </div>
     {{-- Desktop --}}
 
 
-    @if ($id_tamu !== '')
+    @if ($id_tamu !== null)
     {{-- Toolbar Action --}}
 
     <div id="toolbar" class="fixed bottom-0 bg-white bg-opacity-50 z-0 w-screen h-[11%] md:h-[10%] md:p-4 p-2 ">
 
 
-        <h1 class="text-center md:text-xl text-md text-[#572841]  " style="font-family: spinnaker;">Apakah Anda Hadir
+        <h1 class="text-center md:text-xl text-md text-[#572841]  " style="font-family: spinnaker;">Konfirmasi Kehadiran
             ?</h1>
         <div class="flex justify-center ">
 
@@ -560,6 +619,49 @@
         </form>
     </dialog>
     {{-- Modal Konfirmasi Datang (Tidak) --}}
+
+
+    {{-- Modal Send Gifts  --}}
+    <dialog id="sentgifts" class="modal z-30  modal-bottom sm:modal-middle w-full h-full">
+        <form method="dialog" class="modal-box ">
+            <h3 class="font-bold text-lg w-full mb-5">Hello! , {{ $trimmedUrlSegment ?? 'Tamu' }} </h3>
+
+            <div class="flex flex-col gap-3">
+
+                <div class="bg-base-200 p-4 rounded-2xl">
+                    <img src="{{ asset('img/logo-bcapng-32645.png') }}" class="object-fit w-32 h-auto mb-3" alt="">
+                    <p class="font-semibold text-xl">Pricilla Devina Sukamto</p>
+                    <p>3850493773</p>
+                    <a href="#" class="btn w-full btn-info"  wire:click="copy_alert('BCA')" onclick="copyText('3850493773')">Salin Nomor Rekening</a>
+                </div>
+
+                <div class="bg-base-200 p-4 rounded-2xl">
+                    <img src="{{ asset('img/Bank Mandiri Logo (PNG-720p) - FileVector69.png') }}" class="object-fit w-32 h-auto mb-3" alt="">
+                    <p class="font-semibold text-xl" >Arie Lesmana</p>
+                    <p>9000013617619</p>
+                    <a href="#" class="btn w-full btn-info" wire:click="copy_alert('Mandiri')" onclick="copyText('9000013617619')">Salin Nomor Rekening</a>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+            <div class="modal-action ">
+                <!-- if there is a button in form, it will close the modal -->
+
+                <a href="#" class="btn btn-info w-100">Batal</a>
+            </div>
+        </form>
+    </dialog>
+    {{-- Modal Send Gifts  --}}
+
+
+
+
 
     <script>
         // document.addEventListener("DOMContentLoaded", function() {
