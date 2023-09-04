@@ -59,21 +59,25 @@
     </style>
 
     @vite('resources/css/app.css')
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.2/simple-lightbox.min.css" integrity="sha512-FaAQujRxLMvw+BkmGN3w7u9EdQQr1t0vQoY8KDh09+6SFaWSTe+KrT8oCWg25X91hytm5c5BTmiSGQejkraaZg==" crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
+    <link rel="stylesheet" href="{{ asset('css/simple-lightbox.css') }}">
     <title>Wedding invitation of Arie and Vina</title>
     @livewireStyles
 </head>
-<body onload="playMusic();">
+<body >
 
     <div class="audio-container">
         <div class="audio-disk" id="audio-disk"></div>
         <div class="audio-controls" id="audio-controls" onclick="toggleAudio()">
             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" class="fill-[#b21e3a]" viewBox="0 0 48 48">
-                <path id="play-icon" d="M16 10v28l22-14z" style="display:none"/>
-                <path id="pause-icon" d="M14 14h8v20h-8zm12 0h8v20h-8z"/>
+                <path id="play-icon" d="M16 10v28l22-14z" />
+                <path id="pause-icon" d="M14 14h8v20h-8zm12 0h8v20h-8z" style="display:none"/>
             </svg>
         </div>
-        <audio id="audio" autoplay src="{{ asset('music/The Emotions  Best of My Love Audio_320kbps.mp3') }}"></audio>
-    </div>
+        <audio id="audio"  src="{{ asset('music/The Emotions  Best of My Love Audio_320kbps.mp3') }}"></audio>
+     </div>
+
+
 
     {{ $slot }}
 
@@ -87,10 +91,7 @@
         var playIcon = document.getElementById('play-icon');
         var pauseIcon = document.getElementById('pause-icon');
 
-        audio.addEventListener('canplay', function() {
-            audio.play();
-            audioDisk.style.animationPlayState = 'running';
-        });
+
         // if (audio.paused) {
         //         audio.play();
         //         audioDisk.style.animationPlayState = 'running';
@@ -112,9 +113,24 @@
             }
         }
     </script>
-{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/soundmanager2/V2.97a.20150601/script/soundmanager2.min.js" integrity="sha512-xZLSIrUeu9Y2MWViSoMbcCK+Qk7VWgKdWd5QDO+Jb/csaxcnUIt5rm7xZDsxpIJeRf0IwUptx3+j2BiyAxBjiQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.2/simple-lightbox.jquery.min.js" integrity="sha512-/4kQE5RJQYHRhUiK+CZS8UhaJTnLmQkDuf8lOhiP2xLdjthA/rm0VqqWjcyelIx+NDyNHFmtqvuIgOFQnI34WA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.1.3/simple-lightbox.jquery.min.js"></script> --}}
+
+    <script src="{{ asset('js/simple-lightbox.jquery.js') }}"></script>
 
 <script>
+    $(document).ready(function(){
+        var lightbox = $('.gallery a').simpleLightbox({ /* options */ });
+
+
+    });
+</script>
+
+
+<script>
+
+
       function copyText(data) {
 
 
