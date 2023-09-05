@@ -93,7 +93,7 @@ class HomeV2 extends Component
         $tamu->status = true;
 
         $tamu->save();
-        $this->alert('success','Comment Berhasil di Post !');
+        // $this->alert('success','Your wish ');
 
         $this->comment_isi_tamu = '';
 
@@ -109,7 +109,7 @@ class HomeV2 extends Component
         $tamu->hadir = 'Tidak';
         $tamu->jumlah_tamu = 0;
         $tamu->save();
-        $this->alert('info','Kehadiran Sudah Disimpan');
+        $this->alert('info','Thank you for your confirmation');
     }
 
     public function confirmed_accept()
@@ -119,7 +119,7 @@ class HomeV2 extends Component
         $tamu->hadir = 'Iya';
         $tamu->jumlah_tamu = $this->jumlah_tamu;
         $tamu->save();
-        $this->alert('info','Kehadiran Sudah Disimpan');
+        $this->alert('success','Thank you for your confirmation');
     }
 
     public function copy_alert($value){

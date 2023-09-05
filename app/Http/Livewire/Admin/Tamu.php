@@ -33,7 +33,7 @@ class Tamu extends Component
         $page_title = 'Tamu Undangan';
         $page_name = 'Tamu';
 
-        $tamu = MTamu::orderBy('updated_at','DESC');
+        $tamu = MTamu::orderBy('id');
 
         if($this->search_nama_tamu !== null && $this->search_nama_tamu !== '')
             $tamu->where('nama_tamu', 'LIKE', '%' . $this->search_nama_tamu . '%');
