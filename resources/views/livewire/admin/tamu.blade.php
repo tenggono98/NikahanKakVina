@@ -75,6 +75,7 @@
                         <th>No Tlp</th>
                         <th>Tipe Tamu</th>
                         <th>Hadir?</th>
+                        <th>Jumlah Tamu</th>
                         <th>Sudah Buka Link?</th>
                         <th>Invitation</th>
                         <th>Action</th>
@@ -139,6 +140,9 @@ Thank you for your attendance.
 
                         </td>
                         <td>
+                            {{ $row->jumlah_tamu  }}
+                        </td>
+                        <td>
                             @if($row->visit_website_status == 'FALSE')
                             <div class="badge badge-primary">Belum</div>
                             @else
@@ -146,6 +150,7 @@ Thank you for your attendance.
 
                             @endif
                         </td>
+
                         <td>
 
                             <div class="flex gap-3">
@@ -163,6 +168,7 @@ Thank you for your attendance.
                                 @endif
                             </div>
                         </td>
+
                         <td>
                             <div class="flex gap-3">
                                 <div class="flex-auto">
@@ -219,8 +225,49 @@ Thank you for your attendance.
 
 
             @if($is_edit == true)
-                @if(count($checklist_tamu) == 0 || count($checklist_tamu) == null )
-                    <h1>Silakan Pilih Terlebih Dahulu dari Checklist di Table</h1>
+
+                @if($id_edit)
+
+                @for ($i = 0 ; $i < $tamu_input; $i++)
+                <div class="bg-base-200 p-4 rounded-md my-3">
+                    <div class="form-control w-full ">
+
+                        <div class="flex md:flex-row flex-col gap-3">
+                            <div class="flex-auto">
+                                <label class="label">
+                                    <span class="label-text">Nama Tamu</span>
+                                </label>
+                                <input type="text" placeholder="XXXXX & XXXXX" wire:model="nama_tamu.{{$i}}" class="input input-bordered w-full " />
+                            </div>
+                            <div class="flex-auto">
+                                <label class="label">
+                                    <span class="label-text">No Tlp</span>
+                                </label>
+                                <input type="number" placeholder="[Kode Negara]XXXXXX" wire:model="no_tlp_tamu.{{$i}}" class="input input-bordered w-full " />
+                            </div>
+                            <div class="flex-auto">
+                                <label class="label">
+                                    <span class="label-text">Type</span>
+                                </label>
+                                <div class="form-control">
+                                    <label class="label cursor-pointer">
+                                        <input type="radio" name="type_tamu.{{$i}}" wire:model="type_tamu.{{$i}}"  class="radio checked:bg-blue-500"  value="Holy & Wedding" />
+                                    <span class="label-text"  >Holy & Wedding</span>
+                                    </label>
+                                </div>
+                                <div class="form-control">
+                                    <label class="label cursor-pointer">
+                                        <input type="radio" name="type_tamu.{{$i}}" wire:model="type_tamu.{{$i}}"  class="radio checked:bg-blue-500 " value="Holy"  />
+                                    <span class="label-text" >Holy</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                @endfor
+
                 @else
                     @for ($i = 0 ; $i < $tamu_input; $i++)
                     <div class="bg-base-200 p-4 rounded-md my-3">
