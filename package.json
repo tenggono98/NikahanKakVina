@@ -19,7 +19,6 @@
     "dependencies": {
         "animate.css": "^4.1.1",
         "daisyui": "^2.51.6",
-        "simplelightbox": "^2.14.2",
         "tailwindcss-animatecss": "^3.0.4"
     }
 }

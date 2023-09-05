@@ -230,8 +230,8 @@
                 <source src="{{ asset('videos/FAW DESAIN 1 HP.mp4') }}" type="video/mp4" />
             </video>
             <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                <a href="#slide4" class="btn btn-ghost btn-circle">❮</a>
-                <a href="#slide2" class="btn btn-circle btn-ghost text-white">❯</a>
+                <a href="#slide5" class="btn btn-circle btn-ghost  text-[#a7213a] ">❮</a>
+                <a href="#slide2" class="btn btn-circle btn-ghost text-[#a7213a]">❯</a>
             </div>
         </div>
         <div id="slide2" class="carousel-item relative w-full">
@@ -240,8 +240,8 @@
             </video>
             <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
 
-                <a href="#slide1" class="btn btn-circle btn-ghost text-white">❮</a>
-                <a href="#slide3" class="btn btn-circle btn-ghost text-white">❯</a>
+                <a href="#slide1" class="btn btn-circle btn-ghost text-[#a7213a]">❮</a>
+                <a href="#slide3" class="btn btn-circle btn-ghost text-[#a7213a]">❯</a>
 
             </div>
         </div>
@@ -260,8 +260,8 @@
 
                 <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
 
-                    <a href="#slide2" class="btn btn-circle btn-ghost text-white">❮</a>
-                    <a href="#slide4" class="btn btn-circle btn-ghost text-white">❯</a>
+                    <a href="#slide2" class="btn btn-circle btn-ghost text-[#a7213a]">❮</a>
+                    <a href="#slide4" class="btn btn-circle btn-ghost text-[#a7213a]">❯</a>
 
 
                 </div>
@@ -275,8 +275,8 @@
 
                 <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
 
-                    <a href="#slide2" class="btn btn-circle btn-ghost text-white">❮</a>
-                    <a href="#slide4" class="btn btn-circle btn-ghost text-white">❯</a>
+                    <a href="#slide2" class="btn btn-circle btn-ghost text-[#a7213a]">❮</a>
+                    <a href="#slide4" class="btn btn-circle btn-ghost text-[#a7213a]">❯</a>
 
 
                 </div>
@@ -309,6 +309,9 @@
                                     <div class="flex flex-col gap-3 bg-white bg-opacity-80  pt-7  px-5 w-[80vw] h-fit ">
 
                                         @if ($id_tamu !== null)
+                                            @if($tamu->type_tamu == 'Holy')
+
+                                            @else
                                             <div id="toolbar" class=" bottom-0   z-0 w-full  md:p-4 p-2  mx-auto">
 
 
@@ -338,6 +341,7 @@
                                                 </div>
 
                                             </div>
+                                            @endif
                                         @endif
 
                                         <div class=" mx-auto">
@@ -393,8 +397,8 @@
 
             <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
 
-                <a href="#slide3" class="btn btn-circle btn-ghost text-white">❮</a>
-                <a href="#slide5" class="btn btn-circle btn-ghost text-white">❯</a>
+                <a href="#slide3" class="btn btn-circle btn-ghost text-[#a7213a]">❮</a>
+                <a href="#slide5" class="btn btn-circle btn-ghost text-[#a7213a]">❯</a>
 
 
             </div>
@@ -590,8 +594,8 @@
 
             <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
 
-                <a href="#slide4" class="btn btn-circle btn-ghost text-white">❮</a>
-                <a href="#slide1" class="btn btn-circle btn-ghost text-white">❯</a>
+                <a href="#slide4" class="btn btn-circle btn-ghost text-[#a7213a]">❮</a>
+                <a href="#slide1" class="btn btn-circle btn-ghost text-[#a7213a]">❯</a>
 
             </div>
         </div>
@@ -684,7 +688,10 @@
                                 <div
                                     class="flex flex-col gap-3 bg-white bg-opacity-70 mx-5 py-10 px-16 w-[50vw] h-[60vh] overflow-y-scroll">
 
+
                                     @if ($id_tamu !== null)
+                                        @if($tamu->type_tamu == 'Holy')
+                                        @else
                                         <div id="toolbar" class=" bottom-0   z-0 w-full  md:p-4 p-2 ">
 
 
@@ -711,6 +718,7 @@
                                             </div>
 
                                         </div>
+                                        @endif
                                     @endif
 
                                     <div class="">
