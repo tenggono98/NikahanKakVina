@@ -7,6 +7,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\DB;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use Rap2hpoutre\FastExcel\FastExcel;
 
 class Tamu extends Component
 {
@@ -16,9 +17,11 @@ class Tamu extends Component
     public $checklist_tamu = [], $nama_tamu = [] , $no_tlp_tamu = [] , $type_tamu = [] , $link_tamu = [];
     public $tamu_input = 1;
     public $generate_nama_tamu , $generate_type_tamu;
-    public $is_edit = false , $is_add_tamu = true , $id_del;
+    public $is_edit = false , $is_add_tamu = true , $id_del , $id_edit;
 
     public $search_nama_tamu , $search_tipe_tamu , $search_hadir_tamu, $search_buka_link;
+
+    public $exportData;
 
 
     protected $listeners = [
@@ -47,8 +50,41 @@ class Tamu extends Component
 
 
         $tamu_array = $tamu->paginate(50);
+        $this->exportData = $tamu->get();
 
         return view('livewire.admin.tamu',compact('page_title','page_name','tamu_array'))->layout('components.layout-admin-main',compact('page_title','page_name'));
+    }
+
+    public function exportExcel(){
+
+
+    return response()->streamDownload(function () {
+
+
+             return  (new FastExcel($this->exportData))->export('php://output', function ($data) {
+        if($data->hadir == 'FALSE')
+        $hadir='Belum Respond';
+        elseif($data->hadir == 'Iya')
+        $hadir = 'Iya';
+        else
+        $hadir = 'Tidak';
+
+        if($data->visit_website_status == 'FALSE')
+        $visit = 'Belum';
+        else
+        $visit = 'Iya';
+
+            return [
+                'Nama' => $data->nama_tamu ?? '',
+                'No Telp' => $data->no_tlp_tamu ?? '',
+                'Tipe Tamu' => $data->type_tamu ?? '',
+                'Hadir' => $hadir ?? '' ,
+                'Visit' => $visit ?? '',
+                'Jumlah Tamu' => $data->jumlah_tamu ?? ''
+
+            ];
+        });
+      }, sprintf('tamu-%s.xlsx', date('Y-m-d')));
     }
 
     public function resetData()
@@ -97,6 +133,8 @@ class Tamu extends Component
     public function edit($value)
     {
         $this->is_add_tamu = false;
+        $this->is_edit = true;
+        $this->id_edit = $value;
         $tamu =  MTamu::find($value);
         $this->nama_tamu[0] = $tamu->nama_tamu;
         $this->no_tlp_tamu[0] = $tamu->no_tlp_tamu;
@@ -106,6 +144,7 @@ class Tamu extends Component
     public function del($nama = null,$id_del)
     {
         $this->id_del = $id_del;
+
         $this->alert('warning', 'Anda Yakin Menghapus <b>'. $nama.'</b>', [
             'showConfirmButton' => true,
             'showCancelButton' => true,
@@ -175,7 +214,17 @@ class Tamu extends Component
                 }
             $this->alert('success', 'Data Tamu Sudah disimpan');
 
-            }else
+            }
+            elseif($this->id_edit !== null){
+                $tamu =  MTamu::find($this->id_edit);
+                $tamu->nama_tamu = $this->nama_tamu[0];
+                $tamu->no_tlp_tamu = $this->no_tlp_tamu[0];
+                $tamu->type_tamu = $this->type_tamu[0];
+                $tamu->save();
+            $this->alert('success', 'Data Tamu Sudah diperbarui');
+
+            }
+            else
             {
                 foreach($this->checklist_tamu as $i => $value){
                     $tamu =  MTamu::find($value);

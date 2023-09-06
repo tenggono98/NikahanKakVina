@@ -18,6 +18,10 @@
                  <div class="my-5">
                      <button class="btn w-full" wire:click="generateLinkTamu()" >Generate Link Tamu</button>
                  </div>
+
+                 <div class="my-5">
+                    <button class="btn w-full" wire:click="exportExcel()" >Export Excel</button>
+                </div>
                  <div class="my-5">
                     <a href="#tambah-buat-undangan" class="btn w-full" wire:click="resetVal()"> Buat Undangan</a>
                  </div>
