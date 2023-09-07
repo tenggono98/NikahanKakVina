@@ -19,6 +19,7 @@ class HomeV2 extends Component
     public $flag_tamu_alamat;
     public $jumlah_tamu;
     public $tamu , $comment_tamu;
+    public $flag_btn_hadir = false;
 
 
     public $comment_nama_tamu, $comment_isi_tamu;
@@ -33,7 +34,7 @@ class HomeV2 extends Component
     {
 
         $path_get = trim($request->decodedPath(), '/');
-
+        
         if ($path_get !== '') {
         $path = $request->path(); // Get the path from the URL
         $segments = explode('/', $path); // Split the path into segments
@@ -51,12 +52,13 @@ class HomeV2 extends Component
         $this->trimmedUrlSegment = preg_replace($pattern, '', $decodedUrlSegment);
         $trimmedUrlSegment = preg_replace($pattern, '', $decodedUrlSegment);
 
-        $tamu = MTamu::where('nama_tamu',$trimmedUrlSegment)->get();
-        if(count($tamu) <= 0)
-        return redirect()->to('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
-        else
-            $this->flag_tamu = true;
+        $tamu = MTamu::where('nama_tamu',urldecode($trimmedUrlSegment))->get();
 
+        if(count($tamu) <= 0){
+        // return redirect()->to(route('/'));
+        }
+        else
+                $this->flag_tamu = true;
         }
     }
 
@@ -76,7 +78,7 @@ class HomeV2 extends Component
         }else
             $this->comment_tamu = CommentTamu::where('status',true)->orderBy('updated_at','DESC')->get();
 
-           
+
 
         return view('livewire.home-v2')->layout('components.layout');
     }
@@ -100,7 +102,13 @@ class HomeV2 extends Component
     }
 
 
+    public function confriem_btn(){
+        $this->flag_btn_hadir = true;
+    }
 
+    public function resetBtnConfirmation(){
+        $this->flag_btn_hadir = false;
+    }
 
     public function confirmed_decline()
     {
@@ -110,6 +118,7 @@ class HomeV2 extends Component
         $tamu->jumlah_tamu = 0;
         $tamu->save();
         $this->alert('info','Thank you for your confirmation');
+        $this->flag_btn_hadir = false;
     }
 
     public function confirmed_accept()

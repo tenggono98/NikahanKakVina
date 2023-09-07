@@ -965,21 +965,33 @@
 
     {{-- Modal Konfirmasi Datang (Iya) --}}
     <dialog id="hadirModal" class="modal z-40  modal-bottom sm:modal-middle w-full h-full">
-        <form method="dialog" class="modal-box bg-white bg-opacity-70">
-            <h3 class="font-bold text-lg w-full text-[#a7213a]">Hello! , {{ $trimmedUrlSegment ?? '' }} </h3>
-            <p class="py-4 text-[#a7213a]">Number of people ?</p>
+        <form method="dialog" class="modal-box bg-white ">
+            <h3 class="font-bold text-2xl w-full text-[#a7213a]">Hello! , {{ $trimmedUrlSegment ?? '' }} </h3>
+            @if($flag_btn_hadir == false)
+            <p class="py-4 text-[#a7213a] text-xl text-center">Are You Coming?</p>
+            @endif
+            @if($flag_btn_hadir == true)
+            <p class="py-4 text-[#a7213a] text-xl">How Many People Are Coming ?</p>
             <div class="">
                 <input type="number" placeholder="1~99" wire:model="jumlah_tamu"
-                    class="input w-full  bg-white text-[#a7213a]">
+                    class="input w-full input-bordered border-[#a7213a] bg-white text-[#a7213a]">
             </div>
-            <div class="modal-action">
+            @endif
+            <div class="modal-action flex justify-center">
                 <!-- if there is a button in form, it will close the modal -->
+                @if($flag_btn_hadir == true)
                 <a href="#" class="btn  bg-[#e6a86e] text-white border-none"
-                    wire:click="confirmed_accept()">Accept</a>
+                    wire:click="confirmed_accept()">Save</a>
+                @endif
+                @if($flag_btn_hadir == false)
+                <a  class="btn  bg-[#e6a86e] text-white border-none"
+                    wire:click="confriem_btn()">Yes</a>
+                @endif
+                @if($flag_btn_hadir == false)
                 <a href="#" class="btn  bg-[#a7213a] text-white border-none "
-                    wire:click="confirmed_decline()">Decline</a>
-
-                <a href="#" class="btn  bg-[#a7213a] text-white border-none">Close</a>
+                    wire:click="confirmed_decline()">No</a>
+                @endif
+                <a href="#" class="btn  bg-[#a7213a] text-white border-none" wire:click="resetBtnConfirmation">Close</a>
             </div>
         </form>
     </dialog>
@@ -989,7 +1001,7 @@
 
     {{-- Modal Send Gifts  --}}
     <dialog id="sentgifts" class="modal z-40 modal-bottom sm:modal-middle w-full h-full">
-        <form method="dialog" class="modal-box bg-white bg-opacity-70 ">
+        <form method="dialog" class="modal-box bg-white  ">
             <h3 class="font-bold text-lg w-full mb-5 text-[#a7213a]">Hello! , {{ $trimmedUrlSegment ?? 'Tamu' }} </h3>
 
             <div class="flex flex-col gap-3">

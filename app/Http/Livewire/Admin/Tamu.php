@@ -47,10 +47,11 @@ class Tamu extends Component
         if($this->search_buka_link !== null && $this->search_buka_link !== '')
             $tamu->where('visit_website_status', $this->search_buka_link );
 
+        $tamu_export = MTamu::orderBy('id');
 
 
         $tamu_array = $tamu->paginate(50);
-        $this->exportData = $tamu->get();
+        $this->exportData = $tamu_export->get();
 
         return view('livewire.admin.tamu',compact('page_title','page_name','tamu_array'))->layout('components.layout-admin-main',compact('page_title','page_name'));
     }
@@ -203,10 +204,11 @@ class Tamu extends Component
                 foreach($this->nama_tamu as $i => $value){
 
                     $tamu = new MTamu;
-                    $tamu->nama_tamu = $this->nama_tamu[$i];
+                    $id = $tamu->getNextId();
+                    $tamu->nama_tamu = str_replace('/','&',$this->nama_tamu[$i]);
                     $tamu->no_tlp_tamu = $this->no_tlp_tamu[$i];
                     $tamu->type_tamu = $this->type_tamu[$i];
-                    $tamu->link_tamu = urlencode($this->nama_tamu[$i].'-'.rand(1000,9999));
+                    $tamu->link_tamu = urlencode($this->nama_tamu[$i].'-'.$id);
                     $tamu->visit_website_status = "FALSE";
                     $tamu->hadir = "FALSE";
                     $tamu->jumlah_tamu = 0;
@@ -217,9 +219,10 @@ class Tamu extends Component
             }
             elseif($this->id_edit !== null){
                 $tamu =  MTamu::find($this->id_edit);
-                $tamu->nama_tamu = $this->nama_tamu[0];
+                $tamu->nama_tamu = str_replace('/','&',$this->nama_tamu[0]);
                 $tamu->no_tlp_tamu = $this->no_tlp_tamu[0];
                 $tamu->type_tamu = $this->type_tamu[0];
+                $tamu->link_tamu = urlencode($this->nama_tamu[0].'-'.$this->id_edit);
                 $tamu->save();
             $this->alert('success', 'Data Tamu Sudah diperbarui');
 
@@ -228,9 +231,10 @@ class Tamu extends Component
             {
                 foreach($this->checklist_tamu as $i => $value){
                     $tamu =  MTamu::find($value);
-                    $tamu->nama_tamu = $this->nama_tamu[$i];
+                    $tamu->nama_tamu = str_replace('/','&',$this->nama_tamu[$i]);
                     $tamu->no_tlp_tamu = $this->no_tlp_tamu[$i];
                     $tamu->type_tamu = $this->type_tamu[$i];
+                    $tamu->link_tamu = urlencode($this->nama_tamu[$i].'-'.$value);
                     $tamu->save();
                 }
             $this->alert('success', 'Data Tamu Sudah diperbarui');
@@ -251,7 +255,7 @@ class Tamu extends Component
             $item_tamu = MTamu::find($item->id);
 
 
-            $item_tamu->link_tamu = urlencode($item->nama_tamu.'-'.rand(1000,9999));
+            $item_tamu->link_tamu = urlencode($item->nama_tamu.'-'.$item->id);
             $item_tamu->save();
 
 
