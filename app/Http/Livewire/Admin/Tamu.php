@@ -267,7 +267,8 @@ class Tamu extends Component
     public function generateUndangan()
     {
         $tamu = new MTamu();
-        $link_tamu = urlencode($this->generate_nama_tamu.'-'.rand(1000,9999));
+        $id = $tamu->getNextId();
+        $link_tamu = urlencode($this->generate_nama_tamu.'-'. $id );
 
         $tamu->nama_tamu = $this->generate_nama_tamu;
         $tamu->type_tamu = $this->generate_type_tamu;
@@ -277,16 +278,24 @@ class Tamu extends Component
         $tamu->jumlah_tamu = 0;
         $tamu->save();
 
-        $isi_pesan_WA = urlencode("Dear ". $this->generate_nama_tamu.",
-We invite you celebrate our wedding
 
-Arie & Vina
 
-Please visit this link to open your invitation:
-".url($link_tamu ?? '')."
+$isi_pesan_WA = urlencode("Dear, ".$this->generate_nama_tamu."
 
-Thank you for your attendance.
-");
+Guess what? Arie and Vina are taking the plunge into the sea of eternal love, and they want YOU to be a part of their epic adventure!
+
+🎉 Save the Date: Friday, 29th September 2023
+🌟 Invitation Link: ".url($link_tamu ?? '')."
+
+So, mark your calendar, grab your dancing shoes, and get ready to celebrate this match made in heaven! Our joyful jamboree wouldn't be the same without your fantastic presence.
+
+Let's create unforgettable memories together, full of love, laughter, and maybe a little bit of crazy dancing. Your blessing and prayers are the icing on this matrimonial cake.
+
+Stay awesome and stay healthy, because we can't wait to see you there!
+
+Cheers to love and laughter,
+Arie and Vina
+(because you're the life of the party, too!) 😄");
 
 
         $this->alert('success', 'Data Tamu Sudah disimpan silakan Refresh kembali ');

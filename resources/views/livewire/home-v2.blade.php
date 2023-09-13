@@ -2,24 +2,32 @@
     {{-- Nothing in the world is as soft and yielding as water. --}}
 
     <style>
-        #loading {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 24px;
-            color: #333;
-        }
+      /* .loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
 
-        #loading {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 24px;
-            color: #f50000;
-            z-index: 9999;
-        }
+.loader {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+} */
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 
         .video-container {
             display: flex;
@@ -30,41 +38,6 @@
             /* Enable snap scrolling along the x-axis */
         }
 
-        .spinner {
-            border: 4px solid rgba(9, 9, 9, 0.1);
-            border-top: 4px solid red;
-            border-radius: 50%;
-            width: 36px;
-            height: 36px;
-            animation: spin 1s linear infinite;
-            z-index: 9998;
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(255, 255, 255, 0.7);
-            /* Semi-transparent white */
-            z-index: 9997;
-            /* Place the overlay below the loading message */
-        }
-
-        /* .video-section{
-            scroll-snap-align: start;
-        } */
 
 
 
@@ -83,6 +56,10 @@
             scroll-snap-align: start;
         }
     </style>
+
+{{-- <div class="loading-overlay z-40">
+    <div class="loader"></div>
+</div> --}}
 
 
     {{-- Arrow  --}}
@@ -288,7 +265,7 @@
 
 
             {{-- Wishes Begin --}}
-            <section id="wishes" class="w-[100vw] h-max section">
+            <section id="wishes" class="w-[100vw] h-max section ">
                 <div class=" h-full  pt-10 pb-10  md:p-0 w-screen    bg-cover    "
                     style="background-image: url('{{ asset('img/ending_mobile.PNG') }}')">
 
@@ -306,7 +283,7 @@
 
 
                                     {{-- bg-[#fcf1d0] --}}
-                                    <div class="flex flex-col gap-3 bg-white bg-opacity-80  pt-7  px-5 w-[80vw] h-fit ">
+                                    <div class="flex flex-col gap-3 bg-white bg-opacity-80  pt-7  px-5 w-[80vw] h-fit  z-10">
 
                                         @if ($id_tamu !== null)
                                             @if($tamu->type_tamu == 'Holy')
@@ -343,6 +320,8 @@
                                             </div>
                                             @endif
                                         @endif
+
+
 
                                         <div class=" mx-auto">
                                             <p class="text-center text-[15px] text-[#b21e3a]  mb-3"
@@ -395,7 +374,7 @@
             {{-- Wishes End --}}
 
 
-            <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+            <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2  z-0">
 
                 <a href="#slide3" class="btn btn-circle btn-ghost text-[#a7213a]">❮</a>
                 <a href="#slide5" class="btn btn-circle btn-ghost text-[#a7213a]">❯</a>
@@ -551,6 +530,36 @@
                                 </div>
                             </div>
                         @endif
+
+                        @if ($flag_tamu_temp == true)
+                        <div class="w-full mb-3">
+                            <input type="text"
+                                class="w-full p-3 text-sm placeholder:text-md bg-[#F3EAE5] text-[#572841] font-bold text-md  placeholder:text-[#572841] placeholder:font-bold placeholder:opacity-50"
+                                style="font-family:spinnaker" placeholder="NAME" wire:model="comment_nama_tamu"
+                                wire:ignore.self >
+
+
+                        </div>
+                        <div class="w-full">
+
+                            <textarea
+                                class="w-full p-3 bg-[#F3EAE5] text-[#572841] font-bold text-sm  placeholder:text-[#572841] placeholder:font-bold placeholder:opacity-50"
+                                style="font-family:spinnaker" name="" id="" cols="20" rows="3"
+                                placeholder="MESSAGE" wire:model="comment_isi_tamu" wire:ignore.self></textarea>
+                        </div>
+
+                        <div class="w-full flex justify-center">
+                            <div class="mx-auto flex-auto text-center">
+
+
+                                <button wire:click="send_comment()"
+                                    class="focus:outline-none shadow-lg  bg-gradient-to-b from-20% from-[#ffbc7c] to-[#e4a76f] items-center  w-[80%] gap-3 bg-[#ffbc7c] text-[#a7213a]  font-medium rounded-lg  text-[15px] px-5 py-2.5 mr-2 mb-2  z-20  "
+                                    style="font-family:spinnaker">
+                                    SEND
+                                </button>
+                            </div>
+                        </div>
+                    @endif
 
 
                         @if ($comment_tamu !== null)
@@ -917,6 +926,38 @@
                         </div>
                     @endif
 
+                    @if ($flag_tamu_temp == true)
+                    <div class="w-full mb-3">
+                        <input type="text"
+                            class="w-full p-3 text-sm placeholder:text-md bg-[#F3EAE5] text-[#572841] font-bold text-md  placeholder:text-[#572841] placeholder:font-bold placeholder:opacity-50"
+                            style="font-family:spinnaker" placeholder="NAME" wire:model="comment_nama_tamu"
+                            wire:ignore.self readonly>
+
+
+                    </div>
+                    <div class="w-full">
+
+                        <textarea
+                            class="w-full p-3 bg-[#F3EAE5] text-[#572841] font-bold text-sm  placeholder:text-[#572841] placeholder:font-bold placeholder:opacity-50"
+                            style="font-family:spinnaker" name="" id="" cols="20" rows="3"
+                            placeholder="MESSAGE" wire:model="comment_isi_tamu" wire:ignore.self></textarea>
+                    </div>
+
+                    <div class="w-full flex justify-center">
+                        <div class="mx-auto flex-auto text-center">
+
+
+                            <button wire:click="send_comment()"
+                                class=" focus:outline-none shadow-lg  bg-gradient-to-b from-20% from-[#ffbc7c] to-[#e4a76f] items-center  w-[80%] gap-3 bg-[#ffbc7c] text-[#a7213a]  font-medium rounded-lg text-xl px-5 py-2.5 mr-2 mb-2  z-20"
+                                style="font-family:spinnaker">
+                                SEND
+                            </button>
+                        </div>
+                    </div>
+                @endif
+
+
+
 
                     @if ($comment_tamu !== null)
                         <div class="h-full flex flex-col gap-2 ">
@@ -1044,50 +1085,11 @@
 
 
 
-
-    <script>
-        // document.addEventListener("DOMContentLoaded", function() {
-        //     const videos = document.querySelectorAll("video");
-        //     let videosLoaded = 0;
-
-        //     function checkVideosLoaded() {
-        //         videosLoaded++;
-        //         if (videosLoaded === videos.length) {
-        //             // All videos are loaded, hide the loading elements
-        //             document.getElementById("loading").style.display = "none";
-        //             document.querySelector(".loading-overlay").style.display = "none";
-        //         }
-        //     }
-
-        //     videos.forEach(function(video) {
-        //         video.addEventListener("loadeddata", checkVideosLoaded);
-        //         video.addEventListener("error", checkVideosLoaded); // Handle errors too
-        //     });
-
-        //     // Also hide overlay if all videos are already loaded when the page loads
-        //     if (videos.length === 0) {
-        //         document.querySelector(".loading-overlay").style.display = "none";
-        //     }
-        // });
-
-        // const sectionsContainer = document.querySelector('.sections-container');
-        // const sections = document.querySelectorAll('.section');
-
-        // sectionsContainer.addEventListener('wheel', (event) => {
-        //   // Calculate the current visible section
-        //   const currentSectionIndex = Math.floor(sectionsContainer.scrollTop / window.innerHeight);
-        //   let nextSectionIndex = currentSectionIndex + (event.deltaY > 0 ? 1 : -1);
-
-        //   // Ensure nextSectionIndex is within valid range
-        //   nextSectionIndex = Math.max(0, Math.min(sections.length - 1, nextSectionIndex));
-
-        //   // Scroll to the next section
-        //   sections[nextSectionIndex].scrollIntoView({
-        //     behavior: 'smooth',
-        //     block: 'start',
-        //   });
-
-        //   event.preventDefault(); // Prevent default scrolling behavior
-        // });
-    </script>
+    {{-- <script>
+        window.addEventListener('load', () => {
+    // Hide the loading overlay
+        const loadingOverlay = document.querySelector('.loading-overlay');
+        loadingOverlay.style.display = 'none';
+    });
+    </script> --}}
 </div>

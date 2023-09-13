@@ -93,7 +93,7 @@
                     <tr>
                         @php
 
-                        if($row->no_tlp_tamu !== null){
+
                             $isi_pesan_WA = urlencode("Dear, ".$row->nama_tamu."
 
 Guess what? Arie and Vina are taking the plunge into the sea of eternal love, and they want YOU to be a part of their epic adventure!
@@ -110,21 +110,7 @@ Stay awesome and stay healthy, because we can't wait to see you there!
 Cheers to love and laughter,
 Arie and Vina
 (because you're the life of the party, too!) 😄");
-}
-else{
 
-    $isi_pesan_WA = urlencode("Dear ".$row->nama_tamu.",
-We invite you celebrate our wedding
-
-Arie & Vina
-
-Please visit this link to open your invitation:
-".url($row->link_tamu ?? '')."
-
-Thank you for your attendance.
-");
-
-}
 
 
                         @endphp

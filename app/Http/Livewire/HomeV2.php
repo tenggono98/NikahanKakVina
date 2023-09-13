@@ -13,9 +13,10 @@ class HomeV2 extends Component
 {
 
     public $urlSegment;
-    public $trimmedUrlSegment;
+    public $trimmedUrlSegment , $trimmedUrlSegment_id;
     public $id_tamu;
     public $flag_tamu = false;
+    public $flag_tamu_temp = false;
     public $flag_tamu_alamat;
     public $jumlah_tamu;
     public $tamu , $comment_tamu;
@@ -34,7 +35,7 @@ class HomeV2 extends Component
     {
 
         $path_get = trim($request->decodedPath(), '/');
-        
+
         if ($path_get !== '') {
         $path = $request->path(); // Get the path from the URL
         $segments = explode('/', $path); // Split the path into segments
@@ -42,20 +43,40 @@ class HomeV2 extends Component
 
         $encodedUrl = end($segments);
 
+
+
         // Decode the URL segment
         $decodedUrlSegment = urldecode($encodedUrl);
 
+
+
         // Define the pattern to match a hyphen followed by numbers
         $pattern = '/-(\d+)/';
+        $pattern_id = '/^.+?-/';
+
+
+
 
         // Use preg_replace() to trim after the pattern
         $this->trimmedUrlSegment = preg_replace($pattern, '', $decodedUrlSegment);
         $trimmedUrlSegment = preg_replace($pattern, '', $decodedUrlSegment);
 
-        $tamu = MTamu::where('nama_tamu',urldecode($trimmedUrlSegment))->get();
+
+         // Use preg_replace() to trim after the pattern
+         $this->trimmedUrlSegment_id = (int) preg_replace($pattern_id, '', $decodedUrlSegment);
+         $trimmedUrlSegment_id = (int) preg_replace($pattern_id, '', $decodedUrlSegment);
+
+
+
+
+        $tamu = MTamu::where('nama_tamu',urldecode($trimmedUrlSegment))->where('id',$trimmedUrlSegment_id)->get();
+
+
 
         if(count($tamu) <= 0){
-        // return redirect()->to(route('/'));
+            $this->flag_tamu_temp = true;
+
+        // return redirect('/'.$encodedUrl);
         }
         else
                 $this->flag_tamu = true;
@@ -65,16 +86,24 @@ class HomeV2 extends Component
     public function render()
     {
         if($this->trimmedUrlSegment !== null){
-            $this->tamu = MTamu::where('nama_tamu',$this->trimmedUrlSegment)->first();
-            $this->id_tamu = $this->tamu->id ?? '';
-            $this->comment_nama_tamu = $this->trimmedUrlSegment;
+
             $this->comment_tamu = CommentTamu::where('status',true)->orderBy('updated_at','DESC')->get();
 
+
+            if( $this->flag_tamu_temp == false){
+            $this->tamu = MTamu::where('nama_tamu',$this->trimmedUrlSegment)->where('id',$this->trimmedUrlSegment_id)->first();
+            $this->id_tamu = $this->tamu->id ?? '';
+            $this->comment_nama_tamu = $this->trimmedUrlSegment;
+            
             // Update Visit Tamu
             $visit_tamu = MTamu::find($this->id_tamu);
 
+
             $visit_tamu->visit_website_status = 'true';
             $visit_tamu->save();
+             }
+
+
         }else
             $this->comment_tamu = CommentTamu::where('status',true)->orderBy('updated_at','DESC')->get();
 
